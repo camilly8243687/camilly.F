@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sobre Braille</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(#ffc0cb, #ff69b4);
+      overflow: hidden;
+      color: #fff;
+      text-align: center;
+    }
+
+    nav {
+      background: rgba(255, 105, 180, 0.8);
+      padding: 10px;
+    }
+
+    nav a {
+      color: white;
+      margin: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .conteudo {
+      padding: 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 💕 Animação */
+    .item {
+      position: absolute;
+      top: -50px;
+      font-size: 24px;
+      animation: cair linear infinite;
+    }
+
+    @keyframes cair {
+      to {
+        transform: translateY(110vh);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="sobre.html">Sobre</a>
+  </nav>
+
+  <div class="conteudo">
+    <h1>Sobre o Braille</h1>
+    <p>
+      O sistema Braille é um método de leitura e escrita utilizado por pessoas cegas ou com baixa visão.
+    </p>
+
+    <p>
+      Ele foi criado por Louis Braille e utiliza combinações de pontos em relevo
+      que podem ser sentidos com o toque.
+    </p>
+
+    <p>
+      Esse sistema é muito importante para garantir acessibilidade e inclusão,
+      permitindo que mais pessoas tenham acesso à educação e informação.
+    </p>
+  </div>
+
+  <!-- 💖 Corações e laços -->
+  <script>
+    function criarItem() {
+      const item = document.createElement("div");
+      item.classList.add("item");
+
+      const simbolos = ["💖", "🎀"];
+      item.innerHTML = simbolos[Math.floor(Math.random() * simbolos.length)];
+
+      item.style.left = Math.random() * 100 + "vw";
+      item.style.animationDuration = (3 + Math.random() * 5) + "s";
+
+      document.body.appendChild(item);
+
+      setTimeout(() => {
+        item.remove();
+      }, 8000);
+    }
+
+    setInterval(criarItem, 300);
+  </script>
+
+</body>
+</html>
