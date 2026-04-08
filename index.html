@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Mochila Escolar</title>
+<style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  text-align:center;
+  background: linear-gradient(135deg,#ffcce6,#ff99cc,#ffd6ec,#ffb3d9);
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* Corações e Laços Animados */
+.heart, .bow {
+  position: fixed;
+  font-size: 70px;
+  animation: cair 10s linear infinite;
+  opacity:0.3;
+  z-index:-1;
+}
+@keyframes cair {
+  0% { transform: translateY(-100px); }
+  100% { transform: translateY(110vh); }
+}
+
+/* Login */
+#login {
+  margin-top: 100px;
+}
+h1.cursiva {
+  font-family: 'Brush Script MT', cursive;
+  font-size:50px;
+  margin:5px;
+  color:#b30059;
+}
+h2, h3 { color:#b30059; }
+.nome { font-size:22px; font-weight:bold; color:#99004d; margin:10px; }
+input[type=password] {
+  padding:10px; border-radius:10px; border:1px solid #ff80bf; margin:10px; font-size:16px;
+}
+#app { display:none; padding:20px; }
+
+/* Matérias */
+.container { 
+  display:grid; 
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); 
+  gap:20px; 
+  margin-top:20px; 
+}
+.materia {
+  background:#fff0f7;
+  border-radius:15px;
+  border:2px solid #ffb3d9;
+  padding:15px;
+  min-height:300px;
+}
+.materia input {
+  width:90%; 
+  padding:6px; 
+  border-radius:6px; 
+  border:1px solid #ff80bf; 
+  margin-bottom:6px; 
+  font-weight:bold; 
+  font-size:16px;
+}
+.materia textarea { 
+  width:90%; 
+  height:200px; 
+  margin:10px auto; 
+  display:block; 
+  border-radius:10px; 
+  border:1px solid #ff80bf; 
+  padding:8px; 
+  resize: vertical; 
+  font-size:14px;
+}
+
+/* Tabela de horário */
+.tabela {
+  margin:auto; 
+  background:white; 
+  border-radius:15px; 
+  padding:10px; 
+  box-shadow:0 3px 10px rgba(0,0,0,0.2); 
+  margin-top:40px;
+}
+table { 
+  border-collapse:collapse; 
+  margin:auto; 
+  width:90%; 
+}
+th,td { 
+  border:1px solid #ff99cc; 
+  padding:6px; 
+}
+th { 
+  background:#ffb3d9; 
+}
+td input { 
+  width:90px; 
+  border:none; 
+  text-align:center; 
+  background:#fff5fa; 
+}
+
+button { 
+  padding:8px 15px; 
+  border:none; 
+  border-radius:10px; 
+  background:#ff4da6; 
+  color:white; 
+  cursor:pointer; 
+}
+button:hover { 
+  background:#e60073; 
+}
+</style>
+</head>
+<body>
+
+<!-- Corações e laços -->
+<div class="heart" style="left:10%">💖</div>
+<div class="heart" style="left:25%">💗</div>
+<div class="heart" style="left:40%">💕</div>
+<div class="heart" style="left:55%">💞</div>
+<div class="heart" style="left:70%">💘</div>
+<div class="bow" style="left:15%">🎀</div>
+<div class="bow" style="left:35%">🎀</div>
+<div class="bow" style="left:60%">🎀</div>
+<div class="bow" style="left:80%">🎀</div>
+
+<!-- Login -->
+<div id="login">
+  <h1 class="cursiva">MOCHILA</h1>
+  <div class="nome">CAMILLY EMANUELA DOS SANTOS FARIA</div>
+  <input type="password" id="senha" placeholder="Digite a senha" oninput="entrarAuto()">
+</div>
+
+<!-- App -->
+<div id="app">
+  <h1 class="cursiva">MOCHILA</h1>
+  <div class="nome">CAMILLY EMANUELA DOS SANTOS FARIA</div>
+
+  <h2>📚 Minhas Matérias</h2>
+  <div class="container" id="materias"></div>
+
+  <h2>🗓 Horário Escolar</h2>
+  <div class="tabela">
+    <table>
+      <tr>
+        <th>Aula</th>
+        <th>Seg</th>
+        <th>Ter</th>
+        <th>Qua</th>
+        <th>Qui</th>
+        <th>Sex</th>
+      </tr>
+      <tbody id="horario"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+const senhaCorreta = "1322";
+
+function entrarAuto() {
+  let senha = document.getElementById("senha").value.trim();
+  if (senha === senhaCorreta) {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("app").style.display = "block";
+    carregarMaterias();
+    carregarHorario();
+  }
+}
+
+/* Matérias */
+function carregarMaterias() {
+  const container = document.getElementById("materias");
+  container.innerHTML = "";
+  for(let i=1;i<=24;i++){
+    let nome = localStorage.getItem("nome"+i) || "Matéria "+i;
+    let texto = localStorage.getItem("texto"+i) || "";
+
+    const div = document.createElement("div");
+    div.className = "materia";
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.value = nome;
+    input.addEventListener("input",()=>localStorage.setItem("nome"+i,input.value));
+
+    const textarea = document.createElement("textarea");
+    textarea.value = texto;
+    textarea.addEventListener("input",()=>localStorage.setItem("texto"+i,textarea.value));
+
+    div.appendChild(input);
+    div.appendChild(textarea);
+    container.appendChild(div);
+  }
+}
+
+/* Horário */
+function carregarHorario(){
+  const tabela = document.getElementById("horario");
+  tabela.innerHTML = "";
+
+  for(let i=1;i<=9;i++){
+    let linha = "<tr>";
+
+    let fundo = (i<=5) ? "#ffe6f0" : "#ff80bf";
+
+    linha += `<th style="background:${fundo}">${i}</th>`;
+
+    for(let d=1; d<=5; d++){
+      let id = "h"+i+"_"+d;
+      let valor = localStorage.getItem(id)||"";
+      linha += `<td style="background:${fundo}">
+      <input value="${valor}" onkeyup="salvarHorario('${id}',this.value)">
+      </td>`;
+    }
+
+    linha += "</tr>";
+
+    if(i===5){
+      linha += `<tr><td colspan="6" style="height:10px;background:white;border:none;"></td></tr>`;
+    }
+
+    tabela.innerHTML += linha;
+  }
+}
+
+function salvarHorario(id,valor){
+  localStorage.setItem(id,valor);
+}
+</script>
+
+</body>
+</html>
