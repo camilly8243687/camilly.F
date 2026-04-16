@@ -1,0 +1,178 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Direitos Humanos na Escola</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(#ffe4ec, #ffd6e7);
+    overflow-x: hidden;
+}
+
+/* FUNDO ANIMADO */
+.chuva span {
+    position: fixed;
+    top: -50px;
+    font-size: 20px;
+    animation: cair 8s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes cair {
+    to {
+        transform: translateY(110vh);
+    }
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 20px;
+    background: #ffb6c1;
+    color: #fff;
+    font-size: 24px;
+}
+
+/* CAIXAS */
+.caixa {
+    background: #fff0f5;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(255,182,193,0.5);
+}
+
+/* IMAGEM */
+img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+/* POST-IT */
+.postit {
+    background: #ffd6e7;
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.postit h2 {
+    text-align: center;
+}
+
+/* TEXTAREA */
+textarea {
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+}
+
+/* BOTÕES */
+button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: #ff69b4;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ff85c1;
+}
+
+.voltar {
+    background: #ff4d6d;
+}
+</style>
+</head>
+
+<body>
+
+<!-- CHUVA -->
+<div class="chuva" id="chuva"></div>
+
+<header>
+💖 Direitos Humanos na Escola 💖
+</header>
+
+<main>
+
+<div class="caixa">
+<h2>Relação entre professores, alunos e profissionais</h2>
+
+<p>
+Os direitos humanos dentro da escola são essenciais para criar um ambiente de respeito, segurança e acolhimento.
+A relação entre professores, alunos e outros profissionais deve ser baseada na empatia, no diálogo e na igualdade.
+</p>
+
+<p>
+Os professores têm o papel de ensinar e orientar, mas também precisam ouvir e respeitar seus alunos.
+Os estudantes, por sua vez, devem agir com responsabilidade e respeito. Já os demais profissionais da escola
+contribuem para o bom funcionamento do ambiente escolar.
+</p>
+
+<p>
+Quando todos colaboram e se respeitam, a escola se torna um espaço mais justo, onde todos podem aprender e crescer juntos.
+</p>
+</div>
+
+<div class="caixa">
+<h2>Imagem</h2>
+<img src="https://images.unsplash.com/photo-1588072432836-e10032774350" alt="Sala de aula">
+</div>
+
+<div class="caixa postit">
+<h2>🧸💗 Deixe seu comentário</h2>
+
+<textarea placeholder="Escreva algo fofinho aqui..."></textarea>
+<br>
+<button onclick="enviarComentario()">Enviar</button>
+</div>
+
+<button class="voltar" onclick="voltarPagina()">⬅ Voltar</button>
+
+</main>
+
+<script>
+/* FUNÇÃO COMENTÁRIO */
+function enviarComentario() {
+    alert("Comentário enviado! 💖");
+}
+
+/* BOTÃO VOLTAR */
+function voltarPagina() {
+    history.back();
+}
+
+/* CHUVA DE CORAÇÕES E LAÇOS */
+const chuva = document.getElementById("chuva");
+
+function criarItem() {
+    const span = document.createElement("span");
+    span.innerHTML = Math.random() > 0.5 ? "💗" : "🎀";
+    span.style.left = Math.random() * window.innerWidth + "px";
+    span.style.fontSize = (Math.random() * 20 + 15) + "px";
+    span.style.animationDuration = (Math.random() * 5 + 5) + "s";
+
+    chuva.appendChild(span);
+
+    setTimeout(() => {
+        span.remove();
+    }, 8000);
+}
+
+setInterval(criarItem, 300);
+</script>
+
+</body>
+
+</html>
+```
