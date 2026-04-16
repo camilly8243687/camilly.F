@@ -1,4 +1,3 @@
-```html id="placa01"
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -49,7 +48,9 @@ header {
 }
 
 img {
-  width: 100%;
+  width: 250px; /* DIMINUÍDA */
+  display: block;
+  margin: 10px auto;
   border-radius: 10px;
 }
 
@@ -110,64 +111,63 @@ button {
 <div class="caixa">
 <h2>1. Processador (CPU)</h2>
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Intel_CPU.jpg">
-<p>Responsável por executar as tarefas do computador.</p>
+<p>Responsável por executar instruções e processar dados. É considerado o “cérebro” do computador e influencia diretamente na velocidade do sistema.</p>
 </div>
 
 <div class="caixa">
 <h2>2. Memória RAM</h2>
 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/DDR4_RAM.jpg">
-<p>Armazena dados temporários para uso rápido.</p>
+<p>Armazena dados temporários usados pelos programas. Quanto maior a RAM, mais tarefas o computador consegue fazer ao mesmo tempo.</p>
 </div>
 
 <div class="caixa">
 <h2>3. Chipset</h2>
 <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Chipset.jpg">
-<p>Controla a comunicação entre os componentes.</p>
+<p>Gerencia a comunicação entre CPU, memória e outros componentes. Define compatibilidade e recursos da placa-mãe.</p>
 </div>
 
 <div class="caixa">
 <h2>4. BIOS</h2>
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/BIOS_chip.jpg">
-<p>Inicializa o sistema ao ligar o computador.</p>
+<p>Software básico que inicia o computador e verifica os componentes antes do sistema operacional carregar.</p>
 </div>
 
 <div class="caixa">
 <h2>5. Slots PCI</h2>
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/PCI_slots.jpg">
-<p>Permitem conectar placas de expansão.</p>
+<p>Permitem adicionar placas extras como placa de vídeo, som ou rede, expandindo as funções do computador.</p>
 </div>
 
 <div class="caixa">
 <h2>6. Conector ATX</h2>
 <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/ATX_connector.jpg">
-<p>Fornece energia para a placa mãe.</p>
+<p>Responsável por fornecer energia da fonte para a placa-mãe e seus componentes.</p>
 </div>
 
 <div class="caixa">
 <h2>7. HD/SSD</h2>
 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/SSD.jpg">
-<p>Armazena os dados permanentemente.</p>
+<p>Dispositivos de armazenamento permanente. O SSD é mais rápido que o HD e melhora o desempenho geral.</p>
 </div>
 
 <div class="caixa">
 <h2>8. Portas USB</h2>
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/USB_ports.jpg">
-<p>Permitem conectar dispositivos externos.</p>
+<p>Permitem conectar periféricos como mouse, teclado, pen drive e outros dispositivos externos.</p>
 </div>
 
 <div class="caixa">
 <h2>9. Placa de Vídeo</h2>
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/GPU.jpg">
-<p>Responsável pelos gráficos.</p>
+<p>Processa imagens e vídeos. Essencial para jogos, edição de vídeo e tarefas gráficas pesadas.</p>
 </div>
 
 <div class="caixa">
 <h2>10. Bateria CMOS</h2>
 <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/CMOS_battery.jpg">
-<p>Guarda configurações do sistema.</p>
+<p>Mantém as configurações da BIOS salvas mesmo com o computador desligado, como data e hora.</p>
 </div>
 
-<!-- COMENTÁRIOS -->
 <div id="comentarios"></div>
 
 <div class="caixa postit">
@@ -198,7 +198,7 @@ function enviar() {
   editar.innerText="✏️";
   editar.onclick=()=>{
     let novo=prompt("Editar:",texto);
-    if(novo) { p.innerText="💗 "+novo; texto=novo;}
+    if(novo){ p.innerText="💗 "+novo; texto=novo; }
   }
 
   let excluir=document.createElement("button");
@@ -215,7 +215,6 @@ function enviar() {
   document.getElementById("campo").value="";
 }
 
-/* FUNDO */
 const chuva=document.getElementById("chuva");
 setInterval(()=>{
   let s=document.createElement("span");
@@ -230,4 +229,3 @@ setInterval(()=>{
 
 </body>
 </html>
-```
