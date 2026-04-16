@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -14,7 +13,6 @@ body {
     position: relative;
 }
 
-/* FUNDO ANIMADO */
 .chuva {
     position: fixed;
     top: 0;
@@ -22,7 +20,7 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: -1; /* AGORA FICA NO FUNDO */
+    z-index: -1;
 }
 
 .chuva span {
@@ -39,13 +37,11 @@ body {
     }
 }
 
-/* CONTEÚDO */
 header, main {
     position: relative;
     z-index: 1;
 }
 
-/* HEADER */
 header {
     text-align: center;
     padding: 20px;
@@ -54,7 +50,6 @@ header {
     font-size: 24px;
 }
 
-/* CAIXAS */
 .caixa {
     background: #fff0f5;
     margin: 20px;
@@ -63,20 +58,17 @@ header {
     box-shadow: 0 0 10px rgba(255,182,193,0.5);
 }
 
-/* IMAGEM */
 img {
     max-width: 100%;
     border-radius: 10px;
 }
 
-/* POST-IT */
 .postit {
     background: #ffd6e7;
     padding: 20px;
     border-radius: 15px;
 }
 
-/* TEXTAREA */
 textarea {
     width: 100%;
     height: 100px;
@@ -85,7 +77,6 @@ textarea {
     padding: 10px;
 }
 
-/* BOTÕES */
 button {
     margin-top: 10px;
     padding: 10px;
@@ -103,12 +94,33 @@ button:hover {
 .voltar {
     background: #ff4d6d;
 }
+
+#comentarios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px;
+}
+
+.comentario-postit {
+    background: #ffe4ec;
+    padding: 15px;
+    border-radius: 10px;
+    width: 150px;
+    min-height: 100px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    transform: rotate(-2deg);
+    font-size: 14px;
+}
+
+.comentario-postit:nth-child(even) {
+    transform: rotate(2deg);
+}
 </style>
 </head>
 
 <body>
 
-<!-- CHUVA NO FUNDO -->
 <div class="chuva" id="chuva"></div>
 
 <header>
@@ -119,21 +131,9 @@ button:hover {
 
 <div class="caixa">
 <h2>Relação entre professores, alunos e profissionais</h2>
-
-<p>
-Os direitos humanos dentro da escola são essenciais para criar um ambiente de respeito, segurança e acolhimento.
-A relação entre professores, alunos e outros profissionais deve ser baseada na empatia, no diálogo e na igualdade.
-</p>
-
-<p>
-Os professores têm o papel de ensinar e orientar, mas também precisam ouvir e respeitar seus alunos.
-Os estudantes, por sua vez, devem agir com responsabilidade e respeito. Já os demais profissionais da escola
-contribuem para o bom funcionamento do ambiente escolar.
-</p>
-
-<p>
-Quando todos colaboram e se respeitam, a escola se torna um espaço mais justo, onde todos podem aprender e crescer juntos.
-</p>
+<p>Os direitos humanos dentro da escola são essenciais para criar um ambiente de respeito, segurança e acolhimento. A relação entre professores, alunos e outros profissionais deve ser baseada na empatia, no diálogo e na igualdade.</p>
+<p>Os professores têm o papel de ensinar e orientar, mas também precisam ouvir e respeitar seus alunos. Os estudantes, por sua vez, devem agir com responsabilidade e respeito. Já os demais profissionais da escola contribuem para o bom funcionamento do ambiente escolar.</p>
+<p>Quando todos colaboram e se respeitam, a escola se torna um espaço mais justo, onde todos podem aprender e crescer juntos.</p>
 </div>
 
 <div class="caixa">
@@ -141,10 +141,11 @@ Quando todos colaboram e se respeitam, a escola se torna um espaço mais justo, 
 <img src="https://images.unsplash.com/photo-1588072432836-e10032774350">
 </div>
 
+<div id="comentarios"></div>
+
 <div class="caixa postit">
 <h2>🧸💗 Deixe seu comentário</h2>
-
-<textarea placeholder="Escreva algo fofinho aqui..."></textarea>
+<textarea id="campoComentario" placeholder="Escreva algo fofinho aqui..."></textarea>
 <br>
 <button onclick="enviarComentario()">Enviar</button>
 </div>
@@ -155,33 +156,35 @@ Quando todos colaboram e se respeitam, a escola se torna um espaço mais justo, 
 
 <script>
 function enviarComentario() {
-    alert("Comentário enviado! 💖");
+    const texto = document.getElementById("campoComentario").value;
+    if (texto.trim() === "") {
+        alert("Escreve algo primeiro 😅");
+        return;
+    }
+    const div = document.createElement("div");
+    div.className = "comentario-postit";
+    div.innerText = "💗 " + texto;
+    document.getElementById("comentarios").appendChild(div);
+    document.getElementById("campoComentario").value = "";
 }
 
 function voltarPagina() {
     history.back();
 }
 
-/* CHUVA DE FUNDO */
 const chuva = document.getElementById("chuva");
-
 function criarItem() {
     const span = document.createElement("span");
     span.innerHTML = Math.random() > 0.5 ? "💗" : "🎀";
     span.style.left = Math.random() * window.innerWidth + "px";
     span.style.fontSize = (Math.random() * 20 + 15) + "px";
     span.style.animationDuration = (Math.random() * 5 + 5) + "s";
-
     chuva.appendChild(span);
-
-    setTimeout(() => {
-        span.remove();
-    }, 8000);
+    setTimeout(() => { span.remove(); }, 8000);
 }
-
 setInterval(criarItem, 300);
 </script>
 
 </body>
-</html>abra
-```
+</html>
+
