@@ -1,0 +1,233 @@
+```html id="placa01"
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Placa Mãe</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(#ffe4ec, #ffd6e7);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* FUNDO */
+.chuva {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.chuva span {
+  position: absolute;
+  top: -50px;
+  animation: cair linear infinite;
+}
+
+@keyframes cair {
+  to { transform: translateY(110vh); }
+}
+
+/* ESTILO */
+header {
+  text-align: center;
+  padding: 20px;
+  background: #ffb6c1;
+  color: white;
+}
+
+.caixa {
+  background: #fff0f5;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.postit {
+  background: #ffd6e7;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 8px;
+  border: none;
+  border-radius: 10px;
+  background: #ff69b4;
+  color: white;
+  cursor: pointer;
+}
+
+.voltar { background: #ff4d6d; }
+
+#comentarios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.comentario-postit {
+  background: #ffe4ec;
+  padding: 10px;
+  border-radius: 10px;
+  width: 140px;
+}
+
+.botoes-postit {
+  display: flex;
+  justify-content: space-between;
+}
+</style>
+</head>
+
+<body>
+
+<div class="chuva" id="chuva"></div>
+
+<header>💖 Placa Mãe 💖</header>
+
+<main>
+
+<div class="caixa">
+<h2>1. Processador (CPU)</h2>
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Intel_CPU.jpg">
+<p>Responsável por executar as tarefas do computador.</p>
+</div>
+
+<div class="caixa">
+<h2>2. Memória RAM</h2>
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/DDR4_RAM.jpg">
+<p>Armazena dados temporários para uso rápido.</p>
+</div>
+
+<div class="caixa">
+<h2>3. Chipset</h2>
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Chipset.jpg">
+<p>Controla a comunicação entre os componentes.</p>
+</div>
+
+<div class="caixa">
+<h2>4. BIOS</h2>
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/BIOS_chip.jpg">
+<p>Inicializa o sistema ao ligar o computador.</p>
+</div>
+
+<div class="caixa">
+<h2>5. Slots PCI</h2>
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/PCI_slots.jpg">
+<p>Permitem conectar placas de expansão.</p>
+</div>
+
+<div class="caixa">
+<h2>6. Conector ATX</h2>
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/ATX_connector.jpg">
+<p>Fornece energia para a placa mãe.</p>
+</div>
+
+<div class="caixa">
+<h2>7. HD/SSD</h2>
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/SSD.jpg">
+<p>Armazena os dados permanentemente.</p>
+</div>
+
+<div class="caixa">
+<h2>8. Portas USB</h2>
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/USB_ports.jpg">
+<p>Permitem conectar dispositivos externos.</p>
+</div>
+
+<div class="caixa">
+<h2>9. Placa de Vídeo</h2>
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/21/GPU.jpg">
+<p>Responsável pelos gráficos.</p>
+</div>
+
+<div class="caixa">
+<h2>10. Bateria CMOS</h2>
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/CMOS_battery.jpg">
+<p>Guarda configurações do sistema.</p>
+</div>
+
+<!-- COMENTÁRIOS -->
+<div id="comentarios"></div>
+
+<div class="caixa postit">
+<h2>🧸💗 Deixe seu comentário</h2>
+<textarea id="campo"></textarea>
+<button onclick="enviar()">Enviar</button>
+</div>
+
+<button class="voltar" onclick="history.back()">⬅ Voltar</button>
+
+</main>
+
+<script>
+function enviar() {
+  let texto = document.getElementById("campo").value;
+  if(texto.trim()=="") return;
+
+  let div = document.createElement("div");
+  div.className="comentario-postit";
+
+  let p=document.createElement("p");
+  p.innerText="💗 "+texto;
+
+  let botoes=document.createElement("div");
+  botoes.className="botoes-postit";
+
+  let editar=document.createElement("button");
+  editar.innerText="✏️";
+  editar.onclick=()=>{
+    let novo=prompt("Editar:",texto);
+    if(novo) { p.innerText="💗 "+novo; texto=novo;}
+  }
+
+  let excluir=document.createElement("button");
+  excluir.innerText="🗑️";
+  excluir.onclick=()=>div.remove();
+
+  botoes.appendChild(editar);
+  botoes.appendChild(excluir);
+
+  div.appendChild(p);
+  div.appendChild(botoes);
+
+  document.getElementById("comentarios").appendChild(div);
+  document.getElementById("campo").value="";
+}
+
+/* FUNDO */
+const chuva=document.getElementById("chuva");
+setInterval(()=>{
+  let s=document.createElement("span");
+  s.innerHTML=Math.random()>0.5?"💗":"🎀";
+  s.style.left=Math.random()*100+"vw";
+  s.style.fontSize=(15+Math.random()*20)+"px";
+  s.style.animationDuration=(5+Math.random()*5)+"s";
+  chuva.appendChild(s);
+  setTimeout(()=>s.remove(),8000);
+},300);
+</script>
+
+</body>
+</html>
+```
