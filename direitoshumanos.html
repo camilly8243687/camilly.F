@@ -32,15 +32,10 @@ body {
 }
 
 @keyframes cair {
-    to {
-        transform: translateY(110vh);
-    }
+    to { transform: translateY(110vh); }
 }
 
-header, main {
-    position: relative;
-    z-index: 1;
-}
+header, main { position: relative; z-index: 1; }
 
 header {
     text-align: center;
@@ -58,10 +53,7 @@ header {
     box-shadow: 0 0 10px rgba(255,182,193,0.5);
 }
 
-img {
-    max-width: 100%;
-    border-radius: 10px;
-}
+img { max-width: 100%; border-radius: 10px; }
 
 .postit {
     background: #ffd6e7;
@@ -79,21 +71,18 @@ textarea {
 
 button {
     margin-top: 10px;
-    padding: 10px;
+    padding: 8px 10px;
     border: none;
     border-radius: 10px;
     background: #ff69b4;
     color: white;
     cursor: pointer;
+    font-size: 12px;
 }
 
-button:hover {
-    background: #ff85c1;
-}
+button:hover { background: #ff85c1; }
 
-.voltar {
-    background: #ff4d6d;
-}
+.voltar { background: #ff4d6d; }
 
 #comentarios {
     display: flex;
@@ -106,16 +95,24 @@ button:hover {
     background: #ffe4ec;
     padding: 15px;
     border-radius: 10px;
-    width: 150px;
-    min-height: 100px;
+    width: 160px;
+    min-height: 120px;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
     transform: rotate(-2deg);
     font-size: 14px;
+    position: relative;
 }
 
-.comentario-postit:nth-child(even) {
-    transform: rotate(2deg);
+.comentario-postit:nth-child(even) { transform: rotate(2deg); }
+
+.botoes-postit {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
 }
+
+.editar { background: #ffb6c1; }
+.excluir { background: #ff4d6d; }
 </style>
 </head>
 
@@ -123,9 +120,7 @@ button:hover {
 
 <div class="chuva" id="chuva"></div>
 
-<header>
-💖 Direitos Humanos na Escola 💖
-</header>
+<header>💖 Direitos Humanos na Escola 💖</header>
 
 <main>
 
@@ -157,15 +152,51 @@ button:hover {
 <script>
 function enviarComentario() {
     const texto = document.getElementById("campoComentario").value;
+
     if (texto.trim() === "") {
         alert("Escreve algo primeiro 😅");
         return;
     }
+
+    criarPostIt(texto);
+    document.getElementById("campoComentario").value = "";
+}
+
+function criarPostIt(texto) {
     const div = document.createElement("div");
     div.className = "comentario-postit";
-    div.innerText = "💗 " + texto;
+
+    const conteudo = document.createElement("p");
+    conteudo.innerText = "💗 " + texto;
+
+    const botoes = document.createElement("div");
+    botoes.className = "botoes-postit";
+
+    const btnEditar = document.createElement("button");
+    btnEditar.innerText = "✏️";
+    btnEditar.className = "editar";
+    btnEditar.onclick = function() {
+        const novoTexto = prompt("Editar comentário:", texto);
+        if (novoTexto !== null && novoTexto.trim() !== "") {
+            conteudo.innerText = "💗 " + novoTexto;
+            texto = novoTexto;
+        }
+    };
+
+    const btnExcluir = document.createElement("button");
+    btnExcluir.innerText = "🗑️";
+    btnExcluir.className = "excluir";
+    btnExcluir.onclick = function() {
+        div.remove();
+    };
+
+    botoes.appendChild(btnEditar);
+    botoes.appendChild(btnExcluir);
+
+    div.appendChild(conteudo);
+    div.appendChild(botoes);
+
     document.getElementById("comentarios").appendChild(div);
-    document.getElementById("campoComentario").value = "";
 }
 
 function voltarPagina() {
@@ -187,4 +218,3 @@ setInterval(criarItem, 300);
 
 </body>
 </html>
-
