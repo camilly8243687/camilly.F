@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Fotógrafa</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(#ffe4ec, #ffd6e7);
+    overflow-x: hidden;
+    position: relative;
+}
+
+.chuva {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.chuva span {
+    position: absolute;
+    top: -50px;
+    font-size: 20px;
+    animation: cair linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes cair {
+    to { transform: translateY(110vh); }
+}
+
+header, main { position: relative; z-index: 1; }
+
+header {
+    text-align: center;
+    padding: 20px;
+    background: #ffb6c1;
+    color: #fff;
+    font-size: 24px;
+}
+
+.caixa {
+    background: #fff0f5;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(255,182,193,0.5);
+}
+
+img { max-width: 100%; border-radius: 10px; }
+
+.postit {
+    background: #ffd6e7;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 10px;
+    background: #ff69b4;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+button:hover { background: #ff85c1; }
+
+.voltar { background: #ff4d6d; }
+
+#comentarios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px;
+}
+
+.comentario-postit {
+    background: #ffe4ec;
+    padding: 15px;
+    border-radius: 10px;
+    width: 160px;
+    min-height: 120px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    transform: rotate(-2deg);
+    font-size: 14px;
+    position: relative;
+}
+
+.comentario-postit:nth-child(even) { transform: rotate(2deg); }
+
+.botoes-postit {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.editar { background: #ffb6c1; }
+.excluir { background: #ff4d6d; }
+</style>
+</head>
+
+<body>
+
+<div class="chuva" id="chuva"></div>
+
+<header>ESCOLA ESTADUAL EMÌLIA CABRAL MOTA</header>
+
+<main>
+
+  <div class="caixa">
+    <h2>Componete Curricular: S.O</h2>               <h2>Período: Vespertino</h2>
+    <h2>Professor(a): Cleiton Gonçalves Silva</h2>   <h2>Turmas: 2° Técnico- EMTIp</h2>
+                         <h2>ATIVIDADE-2T-S.O.-2 TRI-</h2>
+  </div>
+
+<div class="caixa">
+<h2>1.💾 OCOMPUTADOR NÃO ENCONTRA AS FOTOS</h2>
+<p>Após um ensaio, você conecta o armazenamento ultilizado para trabalhar as fotografias. O computador apresenta um problema e não consegue acessar os arquivos. Como as fotos ainda não foram entregues ao cliente, você precisa evitar qualquer procedimento que possa apagá-las.</p>
+
+  <h2>PERGUNTA</h2>
+<p>Como você investigaria tecnicamente o problema antes de formatar ou reinstalar o sistema? Explique como verificaria o dispositivo de armazenamento, o sistema operacional, as partições e o sistema de arquivo, justificando por que cada etapa deve ser realizada com cuidado.</p>
+</div>
+
+
+<div id="comentarios"></div>
+
+<div class="caixa postit">
+<h2>🧸💗 Deixe seu comentário</h2>
+<textarea id="campoComentario" placeholder="Escreva algo fofinho aqui..."></textarea>
+<br>
+<button onclick="enviarComentario()">Enviar</button>
+</div>
+
+<button class="voltar" onclick="voltarPagina()">⬅ Voltar</button>
+
+</main>
+
+<script>
+function enviarComentario() {
+    const texto = document.getElementById("campoComentario").value;
+
+    if (texto.trim() === "") {
+        alert("Escreve algo primeiro 😅");
+        return;
+    }
+
+    criarPostIt(texto);
+    document.getElementById("campoComentario").value = "";
+}
+
+function criarPostIt(texto) {
+    const div = document.createElement("div");
+    div.className = "comentario-postit";
+
+    const conteudo = document.createElement("p");
+    conteudo.innerText = "💗 " + texto;
+
+    const botoes = document.createElement("div");
+    botoes.className = "botoes-postit";
+
+    const btnEditar = document.createElement("button");
+    btnEditar.innerText = "✏️";
+    btnEditar.className = "editar";
+    btnEditar.onclick = function() {
+        const novoTexto = prompt("Editar comentário:", texto);
+        if (novoTexto !== null && novoTexto.trim() !== "") {
+            conteudo.innerText = "💗 " + novoTexto;
+            texto = novoTexto;
+        }
+    };
+
+    const btnExcluir = document.createElement("button");
+    btnExcluir.innerText = "🗑️";
+    btnExcluir.className = "excluir";
+    btnExcluir.onclick = function() {
+        div.remove();
+    };
+
+    botoes.appendChild(btnEditar);
+    botoes.appendChild(btnExcluir);
+
+    div.appendChild(conteudo);
+    div.appendChild(botoes);
+
+    document.getElementById("comentarios").appendChild(div);
+}
+
+function voltarPagina() {
+    history.back();
+}
+
+const chuva = document.getElementById("chuva");
+function criarItem() {
+    const span = document.createElement("span");
+    span.innerHTML = Math.random() > 0.5 ? "💗" : "🎀";
+    span.style.left = Math.random() * window.innerWidth + "px";
+    span.style.fontSize = (Math.random() * 20 + 15) + "px";
+    span.style.animationDuration = (Math.random() * 5 + 5) + "s";
+    chuva.appendChild(span);
+    setTimeout(() => { span.remove(); }, 8000);
+}
+setInterval(criarItem, 300);
+</script>
+
+</body>
+</html>
