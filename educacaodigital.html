@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscadores e Inteligência Artificial</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Comic Sans MS", "Segoe Print", cursive;
+      background: linear-gradient(135deg, #ffdce9, #ffeef5, #ffd6e7);
+      color: #5d4050;
+      padding: 35px 15px;
+    }
+
+    .caderno {
+      max-width: 900px;
+      margin: auto;
+      position: relative;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          #fffdfd 0px,
+          #fffdfd 31px,
+          #f5c9da 32px,
+          #fffdfd 33px
+        );
+      border-radius: 8px;
+      padding: 55px 55px 50px 90px;
+      box-shadow: 0 10px 30px rgba(150, 80, 110, 0.22);
+      border: 1px solid #f0bfd2;
+    }
+
+    /* Linha vermelha da margem do caderno */
+    .caderno::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 70px;
+      width: 2px;
+      background: #f2a9bd;
+      opacity: 0.8;
+    }
+
+    /* Furos da folha */
+    .furo {
+      position: absolute;
+      left: 18px;
+      width: 25px;
+      height: 25px;
+      background: #ffdce9;
+      border: 3px solid #e6a7bd;
+      border-radius: 50%;
+    }
+
+    .f1 { top: 70px; }
+    .f2 { top: 50%; transform: translateY(-50%); }
+    .f3 { bottom: 70px; }
+
+    .cabecalho {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .cabecalho h1 {
+      margin: 0;
+      color: #c05a82;
+      font-size: clamp(28px, 5vw, 43px);
+      text-shadow: 1px 1px #f7c8d9;
+    }
+
+    .cabecalho p {
+      margin: 8px 0 0;
+      font-size: 18px;
+      color: #8d6172;
+    }
+
+    .decoracao {
+      font-size: 24px;
+      color: #df7da2;
+      letter-spacing: 8px;
+      margin-bottom: 10px;
+    }
+
+    .texto {
+      font-size: 18px;
+      line-height: 1.75;
+      text-align: justify;
+      margin: 18px 0;
+    }
+
+    .destaque {
+      display: inline-block;
+      background: #ffe0eb;
+      border-radius: 8px;
+      padding: 3px 9px;
+      color: #b94e79;
+      font-weight: bold;
+    }
+
+    .anotacao {
+      color: #a84c72;
+      font-weight: bold;
+      font-size: 19px;
+      margin: 20px 0;
+    }
+
+    .perguntas {
+      margin-top: 30px;
+    }
+
+    .perguntas h2 {
+      color: #c05a82;
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 22px;
+    }
+
+    .questao {
+      background: rgba(255, 240, 246, 0.9);
+      border-left: 6px solid #e58aaa;
+      border-radius: 10px;
+      padding: 17px 20px;
+      margin: 18px 0;
+      box-shadow: 2px 4px 10px rgba(180, 100, 130, 0.10);
+    }
+
+    .questao strong {
+      color: #b64e77;
+      font-size: 20px;
+    }
+
+    .questao p {
+      margin: 8px 0 0;
+      line-height: 1.6;
+      font-size: 17px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #a86b82;
+      font-size: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .caderno {
+        padding: 40px 25px 40px 60px;
+      }
+
+      .caderno::before {
+        left: 45px;
+      }
+
+      .furo {
+        left: 10px;
+        width: 20px;
+        height: 20px;
+      }
+
+      .texto, .questao p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="caderno">
+    <div class="furo f1"></div>
+    <div class="furo f2"></div>
+    <div class="furo f3"></div>
+
+    <header class="cabecalho">
+      <div class="decoracao">♡ 🎀 ♡ 🎀 ♡</div>
+      <h1>S.O.   10/99       Camilly E. S. Faria</h1>
+      <p>2° T</p>
+    </header>
+
+    <section>
+      <p class="texto">
+        <span class="destaque">Buscadores e Inteligência artificial</span>
+      </p>
+
+      <p class="texto">
+        Antes da popularização das IAs, os buscadores apresentavam, como resultado de uma pesquisa, primeiro conteúdo patrocinado e, depos, conteúdos relacionados ao que foi pesquisado, ranqueando por diferentes critérios, como: os mais visitados, os que traziam palavras-chaves próximos as buscadas, sempre na tentativa de ordena-los do mais relevantes ao menos relevante.
+      </p>
+
+      <p class="anotacao">✎ Atividade</p>
+    </section>
+    
+      <div class="questao">
+        <strong>1.</strong>
+        <p>
+         1 É correto dizer que IA resulta em impactos
+        </p>
+      </div>
+
+      <div class="questao">
+        <strong>2.</strong>
+        <p>
+          De que maneira as IAs podem facilitar o processo de busca por
+          informações?
+        </p>
+      </div>
+
+      <div class="questao">
+        <strong>3.</strong>
+        <p>
+          Quais critérios de busca, seleção e avaliação de informações
+          continuam sendo válidos após o uso da IA?
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      Feito com carinho ♡ • Página de estudos
+    </footer>
+  </main>
+
+</body>
+</html>
