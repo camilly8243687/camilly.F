@@ -399,6 +399,14 @@
 
 
     <script>
+        function voltarPagina() {
+    if (document.referrer !== "") {
+        history.back();
+    } else {
+        window.location.href = "index.html";
+    }
+}
+</script>
 
         const vermelho = document.getElementById("vermelho");
         const amarelo = document.getElementById("amarelo");
