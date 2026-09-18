@@ -1,241 +1,422 @@
-```css
-* {
-    box-sizing: border-box;
-}
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #ffe4ec;
-    color: #633d4d;
-}
+    <title>Perigos no Trânsito 🚗💗</title>
 
-/* CABEÇALHO */
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-header {
-    text-align: center;
-    padding: 30px;
-    background: linear-gradient(135deg, #ffb6c9, #ffd6e3);
-    border-bottom: 4px solid #f48fb1;
-}
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #ffe4ec;
+            color: #633d4d;
+        }
 
-header h1 {
-    color: #9c3f60;
-    margin: 0;
-}
+        header {
+            background: linear-gradient(135deg, #ffb6c9, #ffd6e3);
+            text-align: center;
+            padding: 30px;
+            border-bottom: 4px solid #f48fb1;
+        }
 
-header p {
-    font-size: 18px;
-}
+        header h1 {
+            margin: 0;
+            color: #963b5b;
+            font-size: 32px;
+        }
 
-/* CONTEÚDO */
+        header p {
+            font-size: 18px;
+        }
 
-main {
-    width: 90%;
-    max-width: 1000px;
-    margin: 30px auto;
-}
+        main {
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
 
-section {
-    background: #fff8fb;
-    margin-bottom: 25px;
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(180, 90, 120, 0.2);
-}
+        section {
+            background: #fff9fb;
+            margin-bottom: 25px;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(180, 90, 120, 0.2);
+        }
 
-h2 {
-    color: #d6537d;
-    text-align: center;
-}
+        h2 {
+            color: #d6537d;
+            text-align: center;
+        }
 
-/* ANIMAÇÃO */
+        /* ANIMAÇÃO DO TRÂNSITO */
 
-.animacao {
-    background: #f8cbd8;
-    overflow: hidden;
-    height: 230px;
-    position: relative;
-}
+        .animacao {
+            height: 230px;
+            background: #f7cbd8;
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+        }
 
-.estrada {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 90px;
-    background: #777;
-    border-top: 5px solid #fff;
-}
+        .ceu {
+            text-align: center;
+            font-size: 35px;
+            padding-top: 20px;
+        }
 
-.estrada::after {
-    content: "";
-    position: absolute;
-    top: 40px;
-    left: 0;
-    width: 100%;
-    border-top: 6px dashed white;
-}
+        .estrada {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 90px;
+            background: #777;
+            border-top: 5px solid white;
+        }
 
-.carro {
-    position: absolute;
-    font-size: 55px;
-    bottom: 25px;
-    left: -80px;
-    animation: andar 7s linear infinite;
-}
+        .estrada::after {
+            content: "";
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            border-top: 6px dashed white;
+        }
 
-@keyframes andar {
-    0% {
-        left: -80px;
-    }
+        .carro {
+            position: absolute;
+            bottom: 25px;
+            left: -100px;
+            font-size: 55px;
+            z-index: 3;
+            animation: carro 7s linear infinite;
+        }
 
-    100% {
-        left: 105%;
-    }
-}
+        @keyframes carro {
+            from {
+                left: -100px;
+            }
 
-/* SEMÁFORO */
+            to {
+                left: 110%;
+            }
+        }
 
-.semaforo {
-    position: absolute;
-    top: 20px;
-    left: 40px;
-    background: #4d3940;
-    padding: 10px;
-    border-radius: 15px;
-    z-index: 2;
-}
+        /* SEMÁFORO */
 
-.luz {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    margin: 6px;
-    background: #777;
-}
+        .semaforo {
+            position: absolute;
+            top: 30px;
+            left: 50px;
+            background: #44373c;
+            padding: 10px;
+            border-radius: 15px;
+            z-index: 5;
+        }
 
-/* CARDS */
+        .luz {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #777;
+            margin: 6px;
+        }
 
-.cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
+        /* PERIGOS */
 
-.card {
-    background: #ffe8f0;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    transition: 0.3s;
-    border: 2px solid #f7b4c9;
-}
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 12px rgba(200, 80, 120, 0.2);
-}
+        .card {
+            background: #ffe8f0;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #f5b1c7;
+            transition: 0.3s;
+        }
 
-.card h3 {
-    color: #c84770;
-}
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 7px 15px rgba(200, 80, 120, 0.25);
+        }
 
-/* FRASE DE ALERTA */
+        .card h3 {
+            color: #c84770;
+            font-size: 21px;
+        }
 
-.frase-alerta {
-    text-align: center;
-    background: #ffd1df;
-    border: 3px solid #ef8eac;
-}
+        /* FRASE */
 
-.frase-alerta p:first-of-type {
-    font-size: 22px;
-    color: #a83257;
-}
+        .alerta {
+            text-align: center;
+            background: #ffd1df;
+            border: 3px solid #ef8eac;
+        }
 
-/* CONSCIENTIZAÇÃO */
+        .frase {
+            font-size: 23px;
+            color: #a83257;
+            font-weight: bold;
+        }
 
-.conscientizacao {
-    text-align: center;
-}
+        /* LISTA */
 
-.conscientizacao p {
-    font-size: 18px;
-}
+        .cuidados {
+            text-align: center;
+        }
 
-/* MENSAGEM */
+        .cuidados p {
+            font-size: 18px;
+            margin: 12px;
+        }
 
-.mensagem {
-    text-align: center;
-}
+        /* MENSAGEM FINAL */
 
-.destaque {
-    font-size: 22px;
-    color: #d6537d;
-    font-weight: bold;
-}
+        .final {
+            text-align: center;
+            background: linear-gradient(135deg, #fff5f8, #ffdce7);
+        }
 
-/* RODAPÉ */
+        .final h2 {
+            font-size: 25px;
+        }
 
-footer {
-    text-align: center;
-    padding: 25px;
-    background: #ffb6c9;
-    color: #71384e;
-    font-weight: bold;
-}
+        .destaque {
+            color: #d6537d;
+            font-size: 22px;
+            font-weight: bold;
+        }
 
-/* CELULAR */
+        footer {
+            text-align: center;
+            background: #ffb6c9;
+            padding: 25px;
+            color: #71384e;
+            font-weight: bold;
+        }
 
-@media (max-width: 600px) {
+        /* RESPONSIVIDADE */
 
-    .cards {
-        grid-template-columns: 1fr;
-    }
+        @media (max-width: 600px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
 
-    header h1 {
-        font-size: 25px;
-    }
+            header h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
 
-    main {
-        width: 94%;
-    }
-}
+<body>
+
+    <header>
+        <h1>🚗💗 Perigos no Trânsito 💗🚦</h1>
+        <p>Respeitar o trânsito é cuidar de vidas!</p>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>⚠️ Atenção no trânsito!</h2>
+
+            <p>
+                O trânsito está presente todos os dias em nossas vidas.
+                Por isso, é muito importante ter responsabilidade,
+                atenção e respeito pelas outras pessoas.
+            </p>
+
+            <p>
+                Pequenas atitudes podem fazer uma grande diferença
+                para evitar acidentes e salvar vidas.
+            </p>
+        </section>
+
+
+        <!-- ANIMAÇÃO -->
+
+        <section class="animacao">
+
+            <div class="ceu">
+                ☁️ ☁️ ☁️
+            </div>
+
+            <div class="semaforo">
+
+                <div id="vermelho" class="luz"></div>
+                <div id="amarelo" class="luz"></div>
+                <div id="verde" class="luz"></div>
+
+            </div>
+
+            <div class="estrada"></div>
+
+            <div class="carro">
+                🚗
+            </div>
+
+        </section>
+
+
+        <!-- PERIGOS -->
+
+        <section>
+
+            <h2>🚨 Principais perigos no trânsito</h2>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>🍺 Álcool e direção</h3>
+                    <p>
+                        O álcool prejudica a atenção e os reflexos.
+                        Se beber, não dirija.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>📱 Celular</h3>
+                    <p>
+                        Usar o celular enquanto dirige tira a atenção
+                        da estrada e aumenta o risco de acidentes.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>🏎️ Velocidade</h3>
+                    <p>
+                        Respeitar o limite de velocidade ajuda a evitar
+                        acidentes e protege todos ao redor.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>🚦 Desrespeitar sinais</h3>
+                    <p>
+                        Respeite semáforos, placas, faixas de pedestres
+                        e todas as regras de trânsito.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FRASE DE IMPACTO -->
+
+        <section class="alerta">
+
+            <h2>🍺 + 🚗 = ⚠️</h2>
+
+            <p class="frase">
+                "1 cerveja + 4 rodas = 7 palmos e família chorando."
+            </p>
+
+            <p>
+                Uma decisão irresponsável pode causar consequências
+                que afetam muitas pessoas. Se beber, escolha outra
+                forma segura de voltar para casa.
+            </p>
+
+        </section>
+
+
+        <!-- DICAS -->
+
+        <section class="cuidados">
+
+            <h2>💗 Atitudes que salvam vidas</h2>
+
+            <p>🎀 Use sempre o cinto de segurança.</p>
+
+            <p>🎀 Respeite os limites de velocidade.</p>
+
+            <p>🎀 Nunca dirija depois de consumir álcool.</p>
+
+            <p>🎀 Não mexa no celular enquanto dirige.</p>
+
+            <p>🎀 Respeite pedestres e ciclistas.</p>
+
+            <p>🎀 Tenha paciência e atenção.</p>
+
+        </section>
+
+
+        <!-- MENSAGEM FINAL -->
+
+        <section class="final">
+
+            <h2>🌷 No trânsito, escolha a vida!</h2>
+
+            <p>
+                Cada pessoa que está no trânsito tem uma história,
+                uma família e alguém esperando por ela.
+            </p>
+
+            <p class="destaque">
+                💕 Respeite. Cuide. Tenha atenção. Chegue bem. 💕
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        🚦 Respeito no trânsito salva vidas! 💗
+    </footer>
+
+
+    <script>
+
+        const vermelho = document.getElementById("vermelho");
+        const amarelo = document.getElementById("amarelo");
+        const verde = document.getElementById("verde");
+
+        function mudarSemaforo() {
+
+            // Vermelho
+            vermelho.style.background = "#ff4f6d";
+            amarelo.style.background = "#777";
+            verde.style.background = "#777";
+
+            setTimeout(() => {
+
+                // Amarelo
+                vermelho.style.background = "#777";
+                amarelo.style.background = "#ffd34e";
+                verde.style.background = "#777";
+
+            }, 2000);
+
+            setTimeout(() => {
+
+                // Verde
+                vermelho.style.background = "#777";
+                amarelo.style.background = "#777";
+                verde.style.background = "#55d66b";
+
+            }, 4000);
+        }
+
+        mudarSemaforo();
+
+        setInterval(mudarSemaforo, 6000);
+
+    </script>
+
+</body>
+</html>
 ```
-```javascript
-const vermelho = document.getElementById("vermelho");
-const amarelo = document.getElementById("amarelo");
-const verde = document.getElementById("verde");
-
-function semaforo() {
-
-    // Vermelho
-    vermelho.style.background = "#ff4f6d";
-    amarelo.style.background = "#777";
-    verde.style.background = "#777";
-
-    setTimeout(() => {
-
-        // Amarelo
-        vermelho.style.background = "#777";
-        amarelo.style.background = "#ffd34e";
-        verde.style.background = "#777";
-
-    }, 2000);
-
-    setTimeout(() => {
-
-        // Verde
-        vermelho.style.background = "#777";
-        amarelo.style.background = "#777";
-        verde.style.background = "#55d66b";
-
-    }, 4000);
-}
-
-semaforo();
-
-setInterval(semaforo, 6000);
-```
-
