@@ -1,0 +1,241 @@
+```css
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #ffe4ec;
+    color: #633d4d;
+}
+
+/* CABEÇALHO */
+
+header {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, #ffb6c9, #ffd6e3);
+    border-bottom: 4px solid #f48fb1;
+}
+
+header h1 {
+    color: #9c3f60;
+    margin: 0;
+}
+
+header p {
+    font-size: 18px;
+}
+
+/* CONTEÚDO */
+
+main {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+section {
+    background: #fff8fb;
+    margin-bottom: 25px;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(180, 90, 120, 0.2);
+}
+
+h2 {
+    color: #d6537d;
+    text-align: center;
+}
+
+/* ANIMAÇÃO */
+
+.animacao {
+    background: #f8cbd8;
+    overflow: hidden;
+    height: 230px;
+    position: relative;
+}
+
+.estrada {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background: #777;
+    border-top: 5px solid #fff;
+}
+
+.estrada::after {
+    content: "";
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    border-top: 6px dashed white;
+}
+
+.carro {
+    position: absolute;
+    font-size: 55px;
+    bottom: 25px;
+    left: -80px;
+    animation: andar 7s linear infinite;
+}
+
+@keyframes andar {
+    0% {
+        left: -80px;
+    }
+
+    100% {
+        left: 105%;
+    }
+}
+
+/* SEMÁFORO */
+
+.semaforo {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    background: #4d3940;
+    padding: 10px;
+    border-radius: 15px;
+    z-index: 2;
+}
+
+.luz {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin: 6px;
+    background: #777;
+}
+
+/* CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: #ffe8f0;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    transition: 0.3s;
+    border: 2px solid #f7b4c9;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 12px rgba(200, 80, 120, 0.2);
+}
+
+.card h3 {
+    color: #c84770;
+}
+
+/* FRASE DE ALERTA */
+
+.frase-alerta {
+    text-align: center;
+    background: #ffd1df;
+    border: 3px solid #ef8eac;
+}
+
+.frase-alerta p:first-of-type {
+    font-size: 22px;
+    color: #a83257;
+}
+
+/* CONSCIENTIZAÇÃO */
+
+.conscientizacao {
+    text-align: center;
+}
+
+.conscientizacao p {
+    font-size: 18px;
+}
+
+/* MENSAGEM */
+
+.mensagem {
+    text-align: center;
+}
+
+.destaque {
+    font-size: 22px;
+    color: #d6537d;
+    font-weight: bold;
+}
+
+/* RODAPÉ */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #ffb6c9;
+    color: #71384e;
+    font-weight: bold;
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    main {
+        width: 94%;
+    }
+}
+```
+```javascript
+const vermelho = document.getElementById("vermelho");
+const amarelo = document.getElementById("amarelo");
+const verde = document.getElementById("verde");
+
+function semaforo() {
+
+    // Vermelho
+    vermelho.style.background = "#ff4f6d";
+    amarelo.style.background = "#777";
+    verde.style.background = "#777";
+
+    setTimeout(() => {
+
+        // Amarelo
+        vermelho.style.background = "#777";
+        amarelo.style.background = "#ffd34e";
+        verde.style.background = "#777";
+
+    }, 2000);
+
+    setTimeout(() => {
+
+        // Verde
+        vermelho.style.background = "#777";
+        amarelo.style.background = "#777";
+        verde.style.background = "#55d66b";
+
+    }, 4000);
+}
+
+semaforo();
+
+setInterval(semaforo, 6000);
+```
+
