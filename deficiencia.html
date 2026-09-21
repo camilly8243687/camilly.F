@@ -1,0 +1,526 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dia das Pessoas com Deficiência</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffe4ec, #fff5f8);
+            color: #5c4050;
+        }
+
+        /* Chuva de corações */
+        .chuva {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .chuva span {
+            position: absolute;
+            top: -50px;
+            font-size: 22px;
+            opacity: 0.6;
+            animation: cair 8s linear infinite;
+        }
+
+        .chuva span:nth-child(1) { left: 5%; animation-delay: 0s; }
+        .chuva span:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .chuva span:nth-child(3) { left: 35%; animation-delay: 4s; }
+        .chuva span:nth-child(4) { left: 50%; animation-delay: 1s; }
+        .chuva span:nth-child(5) { left: 65%; animation-delay: 3s; }
+        .chuva span:nth-child(6) { left: 80%; animation-delay: 5s; }
+        .chuva span:nth-child(7) { left: 92%; animation-delay: 2s; }
+
+        @keyframes cair {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        header {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            background: #ffb6c1;
+            padding: 35px 20px;
+            border-bottom: 5px solid #e78da0;
+        }
+
+        header h1 {
+            margin: 0;
+            color: white;
+            font-size: 38px;
+        }
+
+        header p {
+            color: white;
+            font-size: 18px;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1050px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .caixa {
+            background: #fffafa;
+            border: 2px solid #f3b6c6;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(150, 80, 100, 0.12);
+        }
+
+        h2 {
+            color: #d95c7a;
+            text-align: center;
+        }
+
+        h3 {
+            color: #c94d6b;
+        }
+
+        p {
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff0f5;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 6px solid #e78da0;
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        /* Bengalas */
+        .bengalas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .bengala {
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            background: #fff;
+            border: 2px solid #f0c2cd;
+        }
+
+        .bastao {
+            width: 15px;
+            height: 120px;
+            margin: 10px auto 20px;
+            border-radius: 10px;
+        }
+
+        .branca {
+            background: white;
+            border: 2px solid #aaa;
+        }
+
+        .verde {
+            background: #3bb273;
+        }
+
+        .vermelha-branca {
+            background: repeating-linear-gradient(
+                to bottom,
+                #e74c3c 0px,
+                #e74c3c 20px,
+                white 20px,
+                white 40px
+            );
+            border: 1px solid #aaa;
+        }
+
+        /* Gráfico */
+        .grafico {
+            margin-top: 25px;
+        }
+
+        .barra {
+            margin: 18px 0;
+        }
+
+        .barra p {
+            margin: 5px 0;
+            font-weight: bold;
+        }
+
+        .barra-fundo {
+            width: 100%;
+            height: 28px;
+            background: #f8dce5;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .barra-valor {
+            height: 100%;
+            background: #e78da0;
+            border-radius: 20px;
+            text-align: right;
+            color: white;
+            padding: 5px 10px;
+            font-size: 13px;
+        }
+
+        .video {
+            text-align: center;
+        }
+
+        iframe {
+            width: 90%;
+            max-width: 800px;
+            height: 430px;
+            border: none;
+            border-radius: 18px;
+        }
+
+        .conscientizacao {
+            background: #ffe1ea;
+            border-radius: 18px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .frase {
+            font-size: 22px;
+            font-weight: bold;
+            color: #c94d6b;
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            background: #ffb6c1;
+            text-align: center;
+            padding: 25px;
+            color: white;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 700px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .bengalas {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 28px;
+            }
+
+            iframe {
+                width: 100%;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Corações e lacinhos -->
+    <div class="chuva">
+        <span>♡</span>
+        <span>🎀</span>
+        <span>♡</span>
+        <span>🎀</span>
+        <span>♡</span>
+        <span>🎀</span>
+        <span>♡</span>
+    </div>
+
+    <header>
+        <h1>♡ Dia das Pessoas com Deficiência ♡</h1>
+        <p>Respeito, inclusão, acessibilidade e igualdade</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Introdução -->
+        <section class="caixa">
+            <h2>🌷 Sobre a data</h2>
+
+            <p>
+                O Dia Internacional das Pessoas com Deficiência é celebrado
+                todos os anos em <strong>3 de dezembro</strong>. A data foi
+                estabelecida pela Organização das Nações Unidas (ONU) para
+                promover os direitos, o bem-estar e a inclusão das pessoas
+                com deficiência na sociedade.
+            </p>
+
+            <p>
+                A inclusão não significa apenas permitir que uma pessoa
+                esteja presente. Significa garantir que ela tenha
+                acessibilidade, respeito, autonomia e oportunidades para
+                participar da sociedade.
+            </p>
+        </section>
+
+
+        <!-- Tipos de deficiência -->
+        <section class="caixa">
+            <h2>🎀 Alguns tipos de deficiência</h2>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>👁️ Deficiência Visual</h3>
+                    <p>
+                        É caracterizada por uma perda ou redução da visão,
+                        podendo existir em diferentes graus. Recursos como
+                        bengala, Braille, piso tátil e tecnologias assistivas
+                        podem ajudar na autonomia.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>🦽 Deficiência Física</h3>
+                    <p>
+                        Está relacionada a alterações que podem afetar os
+                        movimentos ou a mobilidade. Rampas, elevadores,
+                        calçadas acessíveis e outros recursos ajudam na
+                        circulação e participação social.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>👂 Deficiência Auditiva</h3>
+                    <p>
+                        Está relacionada à redução ou ausência da audição.
+                        A comunicação pode utilizar Libras, legendas,
+                        aparelhos auditivos e outras tecnologias.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>🧠 Deficiência Intelectual</h3>
+                    <p>
+                        Envolve limitações no funcionamento intelectual e
+                        no comportamento adaptativo, afetando habilidades
+                        conceituais, sociais e práticas.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Deficiência visual -->
+        <section class="caixa">
+            <h2>👁️ Deficiência Visual e a Bengala</h2>
+
+            <p>
+                A bengala longa é um importante recurso de orientação e
+                mobilidade. Ela ajuda a pessoa com deficiência visual a
+                perceber obstáculos e características do caminho, além de
+                contribuir para sua autonomia e segurança.
+            </p>
+
+            <p>
+                No Brasil, diferentes cores de bengala são utilizadas para
+                indicar diferentes condições relacionadas à deficiência
+                visual.
+            </p>
+
+            <div class="bengalas">
+
+                <div class="bengala">
+                    <div class="bastao branca"></div>
+
+                    <h3>Bengala Branca</h3>
+
+                    <p>
+                        Identifica pessoas cegas.
+                    </p>
+                </div>
+
+
+                <div class="bengala">
+                    <div class="bastao verde"></div>
+
+                    <h3>Bengala Verde</h3>
+
+                    <p>
+                        Identifica pessoas com baixa visão.
+                    </p>
+                </div>
+
+
+                <div class="bengala">
+                    <div class="bastao vermelha-branca"></div>
+
+                    <h3>Branca e Vermelha</h3>
+
+                    <p>
+                        Identifica pessoas com surdocegueira,
+                        ou seja, deficiência visual e auditiva associadas.
+                    </p>
+                </div>
+
+            </div>
+
+            <p style="margin-top:25px;">
+                <strong>Importante:</strong> a cor da bengala é uma forma
+                de identificação e não deve ser usada para fazer julgamentos
+                sobre a pessoa. O mais importante é respeitar sua autonomia
+                e oferecer ajuda somente quando ela solicitar ou aceitar.
+            </p>
+        </section>
+
+
+        <!-- Gráfico -->
+        <section class="caixa">
+            <h2>📊 Gráfico ilustrativo</h2>
+
+            <p>
+                O gráfico abaixo é apenas uma representação visual para
+                demonstrar como diferentes tipos de deficiência podem ser
+                apresentados em um trabalho escolar.
+            </p>
+
+            <div class="grafico">
+
+                <div class="barra">
+                    <p>Visual — 30%</p>
+                    <div class="barra-fundo">
+                        <div class="barra-valor" style="width:30%;">
+                            30%
+                        </div>
+                    </div>
+                </div>
+
+                <div class="barra">
+                    <p>Física — 25%</p>
+                    <div class="barra-fundo">
+                        <div class="barra-valor" style="width:25%;">
+                            25%
+                        </div>
+                    </div>
+                </div>
+
+                <div class="barra">
+                    <p>Auditiva — 20%</p>
+                    <div class="barra-fundo">
+                        <div class="barra-valor" style="width:20%;">
+                            20%
+                        </div>
+                    </div>
+                </div>
+
+                <div class="barra">
+                    <p>Intelectual — 25%</p>
+                    <div class="barra-fundo">
+                        <div class="barra-valor" style="width:25%;">
+                            25%
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Vídeo -->
+        <section class="caixa video">
+            <h2>🎥 Vídeo de conscientização</h2>
+
+            <p>
+                Assista a um vídeo sobre inclusão, acessibilidade e respeito
+                às pessoas com deficiência.
+            </p>
+
+            <!--
+                TROQUE O LINK ABAIXO PELO LINK DE INCORPORAÇÃO
+                (EMBED) DO VÍDEO QUE VOCÊ ESCOLHER.
+            -->
+
+            <iframe
+                src="https://www.youtube.com/embed/SEU_VIDEO_AQUI"
+                title="Vídeo de conscientização"
+                allowfullscreen>
+            </iframe>
+
+            <p>
+                <strong>Vídeo:</strong> conscientização sobre inclusão e
+                acessibilidade.
+            </p>
+        </section>
+
+
+        <!-- Conscientização -->
+        <section class="caixa">
+            <div class="conscientizacao">
+
+                <h2>🌸 Conscientização</h2>
+
+                <p class="frase">
+                    "A acessibilidade transforma espaços,
+                    e a inclusão transforma vidas."
+                </p>
+
+                <p>
+                    Respeitar as pessoas com deficiência é reconhecer que
+                    todos têm direito à participação, à autonomia e a uma
+                    vida com dignidade.
+                </p>
+
+                <p>
+                    Pequenas atitudes fazem diferença: respeitar vagas
+                    reservadas, não bloquear rampas ou pisos táteis,
+                    oferecer ajuda sem impor e combater o preconceito
+                    são exemplos de atitudes que contribuem para uma
+                    sociedade mais inclusiva.
+                </p>
+
+            </div>
+        </section>
+
+    </div>
+
+
+    <footer>
+        🎀 Feito para conscientizar, informar e promover a inclusão. 🎀
+        <br>
+        Dia Internacional das Pessoas com Deficiência — 3 de dezembro
+    </footer>
+
+</body>
+</html>
+```
