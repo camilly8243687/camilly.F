@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Segurança e Saúde Escolar</title>
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --bg-card: rgba(30, 41, 59, 0.7);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-red: #f43f5e;
+      --accent-yellow: #fbbf24;
+      --accent-green: #34d399;
+      --accent-purple: #c084fc;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(244, 63, 94, 0.15) 0px, transparent 50%);
+    }
+
+    /* Navegação */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+    }
+
+    .btn-voltar {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-voltar:hover {
+      background: var(--accent-blue);
+      color: #0f172a;
+      transform: translateX(-4px);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
+
+    /* Container Principal */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #38bdf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Barra de Busca e Filtros */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.8rem 1.2rem;
+      border-radius: 30px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-main);
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent-blue);
+    }
+
+    .filter-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+    }
+
+    .tag.active, .tag:hover {
+      background: var(--accent-blue);
+      color: #0f172a;
+      border-color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    /* Grid de Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--card-color, var(--accent-blue));
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .card-body {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .card-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card-list li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .card-list li::before {
+      content: '•';
+      color: var(--card-color, var(--accent-blue));
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* Seção Interativa - Simulador */
+    .interactive-section {
+      margin-top: 4rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .interactive-section h2 {
+      margin-bottom: 1rem;
+      color: var(--accent-yellow);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .scenario-box {
+      background: rgba(15, 23, 42, 0.6);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      margin-top: 1rem;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .option-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option-btn:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: var(--accent-blue);
+    }
+
+    .feedback {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      display: none;
+      font-weight: 500;
+    }
+
+    .feedback.correct {
+      display: block;
+      background: rgba(52, 211, 153, 0.15);
+      border: 1px solid var(--accent-green);
+      color: var(--accent-green);
+    }
+
+    .feedback.incorrect {
+      display: block;
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid var(--accent-red);
+      color: var(--accent-red);
+    }
+
+    /* Animações Keyframes */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .controls { flex-direction: column; align-items: stretch; }
+      .search-box { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">
+      <span>🛡️</span> EduSegurança
+    </div>
+    <button class="btn-voltar" onclick="window.history.back()">
+      <span>⬅</span> Voltar
+    </button>
+  </nav>
+
+  <div class="container">
+    
+    <header class="hero">
+      <h1>Segurança & Saúde no Ambiente Escolar</h1>
+      <p>Guia completo de diretrizes, prevenção de riscos elétricos, estruturais, saúde mental e protocolos de emergência para escolas modernas.</p>
+    </header>
+
+    <div class="controls">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Buscar por tema (ex: elétrica, fogo, ergonomia)..." onkeyup="filterCards()">
+      </div>
+      <div class="filter-tags">
+        <button class="tag active" onclick="filterCategory('todos')">Todos</button>
+        <button class="tag" onclick="filterCategory('eletrica')">Eletricidade</button>
+        <button class="tag" onclick="filterCategory('emergencia')">Emergência</button>
+        <button class="tag" onclick="filterCategory('saude')">Saúde & Bem-Estar</button>
+        <button class="tag" onclick="filterCategory('estrutural')">Estrutural</button>
+      </div>
+    </div>
+
+    <!-- Grid de Conteúdos -->
+    <div class="grid" id="cardGrid">
+
+      <!-- Card 1: Eletricidade -->
+      <div class="card" data-category="eletrica" style="--card-color: var(--accent-yellow);">
+        <div class="card-header">
+          <div class="card-icon">⚡</div>
+          <div class="card-title">Segurança Elétrica</div>
+        </div>
+        <div class="card-body">
+          Prevenção de acidentes elétricos em laboratórios, salas de aula e áreas comuns.
+        </div>
+        <ul class="card-list">
+          <li>Instalação de Disjuntores Diferenciais Residuais (DR) para evitar choques graves.</li>
+          <li>Uso de protetores de tomada em áreas de educação infantil.</li>
+          <li>Inspeção periódica de fiações em laboratórios de informática e robótica.</li>
+          <li>Proibição de extensões elétricas improvisadas ("benjamins" em cascata).</li>
+        </ul>
+      </div>
+
+      <!-- Card 2: Emergências -->
+      <div class="card" data-category="emergencia" style="--card-color: var(--accent-red);">
+        <div class="card-header">
+          <div class="card-icon">🧯</div>
+          <div class="card-title">Combate a Incêndios</div>
+        </div>
+        <div class="card-body">
+          Equipamentos e rotas de fuga para proteção contra incêndios e pânico.
+        </div>
+        <ul class="card-list">
+          <li>Extintores adequados (Água para sólidos, CO2/Pó Químico para elétrica).</li>
+          <li>Sinalização fotoluminescente das rotas de fuga e saídas de emergência.</li>
+          <li>Simulados de evacuação realizados pelo menos uma vez por semestre.</li>
+          <li>Portas corta-fogo desobstruídas e com barras antipânico funcionais.</li>
+        </ul>
+      </div>
+
+      <!-- Card 3: Saúde Mental e Bullying -->
+      <div class="card" data-category="saude" style="--card-color: var(--accent-purple);">
+        <div class="card-header">
+          <div class="card-icon">🧠</div>
+          <div class="card-title">Saúde Emocional & Clima Escolar</div>
+        </div>
+        <div class="card-body">
+          Iniciativas para garantir um ambiente psicologicamente seguro e acolhedor.
+        </div>
+        <ul class="card-list">
+          <li>Programas contínuos de prevenção ao bullying e cyberbullying.</li>
+          <li>Criação de canais anônimos para escuta e acolhimento de alunos.</li>
+          <li>Capacitação do corpo docente para identificar sinais de ansiedade/depressão.</li>
+          <li>Espaços de descompressão para estudantes e professores.</li>
+        </ul>
+      </div>
+
+      <!-- Card 4: Ergonomia e Física -->
+      <div class="card" data-category="estrutural" style="--card-color: var(--accent-blue);">
+        <div class="card-header">
+          <div class="card-icon">🏫</div>
+          <div class="card-title">Ergonomia e Infraestrutura</div>
+        </div>
+        <div class="card-body">
+          Manutenção das instalações físicas para evitar quedas e lesões articulares.
+        </div>
+        <ul class="card-list">
+          <li>Mobiliário ajustável conforme a faixa etária do estudante.</li>
+          <li>Pisos antiderrapantes em rampas, corredores e refeitórios.</li>
+          <li>Iluminação e ventilação adequadas (mínimo de 300 lux nas salas).</li>
+          <li>Manutenção constante das grades de proteção e corrimãos em escadas.</li>
+        </ul>
+      </div>
+
+      <!-- Card 5: Primeiros Socorros -->
+      <div class="card" data-category="emergencia" style="--card-color: var(--accent-green);">
+        <div class="card-header">
+          <div class="card-icon">🩹</div>
+          <div class="card-title">Primeiros Socorros (Lei Lucas)</div>
+        </div>
+        <div class="card-body">
+          Cumprimento da legislação para atendimento de urgência no ambiente escolar.
+        </div>
+        <ul class="card-list">
+          <li>Treinamento de professores e funcionários em manobras de desengasgo (Heimlich).</li>
+          <li>Kits de primeiros socorros revisados e estocados em local acessível.</li>
+          <li>Protocolos claros de comunicação imediata com o SAMU (192) e responsáveis.</li>
+          <li>Mapeamento de alunos com alergias graves ou condições crônicas.</li>
+        </ul>
+      </div>
+
+      <!-- Card 6: Biossegurança -->
+      <div class="card" data-category="saude" style="--card-color: var(--accent-blue);">
+        <div class="card-header">
+          <div class="card-icon">🧼</div>
+          <div class="card-title">Higiene e Biossegurança</div>
+        </div>
+        <div class="card-body">
+          Prevenção de surtos de doenças transmissíveis e vigilância sanitária.
+        </div>
+        <ul class="card-list">
+          <li>Higienização constante de sanitários e áreas de refeição.</li>
+          <li>Pontos de álcool em gel e sabão líquido em todas as alas da escola.</li>
+          <li>Qualidade da água monitorada (limpeza periódica dos caixas d'água).</li>
+          <li>Controle de pragas e vetores alinhado às normas da vigilância sanitária.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Seção Interativa -->
+    <section class="interactive-section">
+      <h2>🚨 Simulador de Tomada de Decisão em Emergência</h2>
+      <p style="color: var(--text-muted);">Teste seu conhecimento sobre o que fazer em uma situação crítica no ambiente escolar:</p>
+
+      <div class="scenario-box">
+        <p><strong>Cenário:</strong> Um equipamento eletroeletrônico em um laboratório começou a soltar fumaça intensa e faíscas perto de papéis. Qual deve ser a PRIMEIRA ação do responsável?</p>
+        
+        <div class="options">
+          <button class="option-btn" onclick="checkAnswer(false, this)">A) Jogar água imediatamente sobre o equipamento para apagar o fogo.</button>
+          <button class="option-btn" onclick="checkAnswer(true, this)">B) Desligar o disjuntor geral da sala e afastar os alunos em segurança.</button>
+          <button class="option-btn" onclick="checkAnswer(false, this)">C) Assoprar e tentar abafar as faíscas com um pano seco.</button>
+        </div>
+
+        <div id="feedback" class="feedback"></div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Função de Filtragem por Categoria
+    function filterCategory(category) {
+      const cards = document.querySelectorAll('.card');
+      const tags = document.querySelectorAll('.tag');
+
+      // Atualiza estado ativo das tags
+      tags.forEach(tag => tag.classList.remove('active'));
+      event.target.classList.add('active');
+
+      // Exibe/oculta cards
+      cards.forEach(card => {
+        if (category === 'todos' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Função de Busca em Tempo Real
+    function filterCards() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Lógica do Simulador Interativo
+    function checkAnswer(isCorrect, element) {
+      const feedback = document.getElementById('feedback');
+      const options = document.querySelectorAll('.option-btn');
+
+      // Desabilita botões após a resposta
+      options.forEach(btn => btn.style.pointerEvents = 'none');
+
+      if (isCorrect) {
+        element.style.borderColor = 'var(--accent-green)';
+        element.style.background = 'rgba(52, 211, 153, 0.2)';
+        feedback.className = 'feedback correct';
+        feedback.innerText = '✅ Correto! Cortar a fonte de energia elétrica é essencial antes de combater o fogo e evacuar os alunos para evitar choques elétricos graves.';
+      } else {
+        element.style.borderColor = 'var(--accent-red)';
+        element.style.background = 'rgba(244, 63, 94, 0.2)';
+        feedback.className = 'feedback incorrect';
+        feedback.innerText = '❌ Incorreto. Nunca use água em incêndios com equipamentos energizados (Risco elétrico grave de classe C). O correto é desligar a energia e isolar a área.';
+      }
+    }
+  </script>
+
+</body>
+</html>
