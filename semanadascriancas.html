@@ -12,6 +12,25 @@
             scroll-behavior: smooth;
         }
 
+        .voltar {
+    display: block;
+    margin: 25px auto;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #ff4d6d;
+    color: white;
+    font-family: "Comic Sans MS", cursive;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.voltar:hover {
+    background: #ff69b4;
+    transform: scale(1.05);
+}
+
         body {
             margin: 0;
             font-family: "Comic Sans MS", cursive;
@@ -429,8 +448,18 @@
                     <h3>Domingos divertidos</h3>
 
                     <p>
-                        Meu namorado passou os domingos comigo
-                        e a gente brincou bastante.
+                        Meu namorado passou os domingos comigo e foi muito legal.
+                  
+                    </p>
+
+                </div>
+
+                 <div class="emoji">🥲</div>
+
+                    <h3>Momentos de doideira</h3>
+
+                    <p>
+                        Eu tava falando com o Gabriel que meu ChatGPT era abusivo comigo.
                     </p>
 
                 </div>
@@ -443,8 +472,8 @@
                     <h3>O quase acidente</h3>
 
                     <p>
-                        Em algum momento eu quase perdi o dedo
-                        por causa de um prego. Sim, aconteceu.
+                        Em algum momento eu quase perdi o dedo.
+                    
                     </p>
 
                 </div>
@@ -457,8 +486,7 @@
                     <h3>O chuveirão</h3>
 
                     <p>
-                        Também conseguimos quebrar o registro
-                        do chuveirão. Engenharia nota 10.
+                        A gente conseguiu quebrar o registro do chuveirão.
                     </p>
 
                 </div>
@@ -471,8 +499,8 @@
                     <h3>Trabalho doméstico</h3>
 
                     <p>
-                        Minha vó não me deu paz e eu trabalhei
-                        em casa como se tivesse três empregos.
+                        Minha vó me fez trabalhar que nem uma condenada.
+                    
                     </p>
 
                 </div>
@@ -495,12 +523,19 @@
 
                 <p>
                     Uma das melhores partes foi passar os domingos
-                    acompanhada, brincando e aproveitando o tempo
-                    juntos. Foi simples, mas deixou a semana muito
-                    mais divertida.
+                    acompanhada, eu e o Gabriel brincou bastante. Eu pintei e rabisquei com o Gabriel, arrumei o cabelo dele, pintei ele, fiz o menino quase morrer de cansaço de tanto correr pra lá e pra cá, a gente correu atrás de uma galinha e me ajudou a cozinhar.
                 </p>
 
             </div>
+
+             <div class="memoria">
+
+                <h3>🤨 As doiduras</h3>
+
+                <p>
+                    Teve um dia que eu e o Gabriel tava em chamada, não sei oq era o assunto antes mas lembro que eu tinha pedido ele pra fazer uma imagem no chatGPT e depois comecei a chorar falando q eu n podia fazer na minha conta porque eu e meu chatGPT temos uma relação abusiva que quando eu mando uma foto e peço para ele editar, ele faz mas logo fala que meu limite diário tinha acabado, e eu comecei a chorar porque eu e meu chat tinhamos uma relação abusiva e q ele era tóxico comigo.
+                </p>
+
 
 
             <div class="memoria">
@@ -508,10 +543,8 @@
                 <h3>🔨 O prego</h3>
 
                 <p>
-                    Teve também o momento em que um simples prego
-                    quase transformou uma brincadeira em uma visita
-                    indesejada ao hospital. Felizmente, ficou só
-                    no susto.
+                    Em algum momento eu quase perdi o dedo
+                        por causa de um prego. Eu e o Gabriel estavamos brincando de esconde-esconde e uma hora eu corri e passei a mão pelo tronco de um coqueiro, a aliança ficou garrada e por eu estar correndo, fui puxada com força de volta, tá dplorido ate hj 🥲.
                 </p>
 
             </div>
@@ -522,9 +555,7 @@
                 <h3>🚿 O registro do chuveirão</h3>
 
                 <p>
-                    E claro, não poderia faltar a grande obra de
-                    engenharia da semana: conseguimos quebrar o
-                    registro do chuveirão.
+                    Também conseguimos quebrar o registro do cuveirão q fica na área externa da casa, ai ficou vazando água por um tempão, mas depois meu outro avô por parte de mãe foi la e arrumou, ele é muito inteligente (gambiarreiro).
                 </p>
 
             </div>
@@ -535,9 +566,8 @@
                 <h3>🧹 A jornada de trabalho</h3>
 
                 <p>
-                    Quando parecia que eu teria uma semana tranquila,
-                    minha vó decidiu que eu precisava trabalhar em
-                    casa. E trabalhei. Muito.
+                    Minha vó não me deu paz e eu trabalhei
+                        em casa que nem uma escrava, sendo q tinha mais gente em casa que podia muito bem ajudar, que raiva que passei
                 </p>
 
             </div>
@@ -555,7 +585,7 @@
 
                 <li>Nem toda semana tranquila realmente será tranquila.</li>
 
-                <li>Pregos devem ser tratados com respeito.</li>
+                <li>Tenho medo de pregos.</li>
 
                 <li>Registros de chuveirão não são indestrutíveis.</li>
 
@@ -564,6 +594,8 @@
                 <li>Momentos simples podem virar memórias muito boas.</li>
 
                 <li>Às vezes o melhor plano é simplesmente aproveitar.</li>
+
+                <li>ChatGPT é igual mulher na tpm, você pode dar o carinho q for q ele ainda vai ficar tóxico.</li>
 
             </ul>
 
@@ -721,9 +753,9 @@
 
             </div>
 
-            <a href="#inicio" class="botao">
-                Voltar para o começo 🎀
-            </a>
+            <button class="voltar" onclick="history.back()">
+    ⬅ Voltar
+</button>
 
         </section>
 
