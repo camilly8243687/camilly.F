@@ -1,9 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Minha Semana das Crianças 💗</title>
 
     <style>
@@ -11,25 +11,6 @@
             box-sizing: border-box;
             scroll-behavior: smooth;
         }
-
-        .voltar {
-    display: block;
-    margin: 25px auto;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 10px;
-    background: #ff4d6d;
-    color: white;
-    font-family: "Comic Sans MS", cursive;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.voltar:hover {
-    background: #ff69b4;
-    transform: scale(1.05);
-}
 
         body {
             margin: 0;
@@ -43,16 +24,35 @@
                     #ffd6e7 30px
                 );
             color: #7a3654;
+            overflow-x: hidden;
+        }
+
+        /* BOTÃO VOLTAR */
+
+        .voltar {
+            display: block;
+            margin: 25px auto;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 12px;
+            background: #ff4d6d;
+            color: white;
+            font-family: "Comic Sans MS", cursive;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .voltar:hover {
+            background: #ff69b4;
+            transform: scale(1.05);
         }
 
         /* CORAÇÕES CAINDO */
 
         .chuva {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             pointer-events: none;
             z-index: 999;
             overflow: hidden;
@@ -66,40 +66,13 @@
             animation: cair linear infinite;
         }
 
-        .chuva span:nth-child(1) {
-            left: 5%;
-            animation-duration: 7s;
-        }
-
-        .chuva span:nth-child(2) {
-            left: 15%;
-            animation-duration: 10s;
-        }
-
-        .chuva span:nth-child(3) {
-            left: 28%;
-            animation-duration: 8s;
-        }
-
-        .chuva span:nth-child(4) {
-            left: 40%;
-            animation-duration: 12s;
-        }
-
-        .chuva span:nth-child(5) {
-            left: 55%;
-            animation-duration: 9s;
-        }
-
-        .chuva span:nth-child(6) {
-            left: 70%;
-            animation-duration: 11s;
-        }
-
-        .chuva span:nth-child(7) {
-            left: 85%;
-            animation-duration: 8s;
-        }
+        .chuva span:nth-child(1) { left: 5%; animation-duration: 7s; }
+        .chuva span:nth-child(2) { left: 15%; animation-duration: 10s; }
+        .chuva span:nth-child(3) { left: 28%; animation-duration: 8s; }
+        .chuva span:nth-child(4) { left: 40%; animation-duration: 12s; }
+        .chuva span:nth-child(5) { left: 55%; animation-duration: 9s; }
+        .chuva span:nth-child(6) { left: 70%; animation-duration: 11s; }
+        .chuva span:nth-child(7) { left: 85%; animation-duration: 8s; }
 
         @keyframes cair {
             to {
@@ -172,12 +145,13 @@
         }
 
         section {
-            background: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.92);
             margin: 35px 0;
             padding: 35px;
             border-radius: 25px;
             border: 3px solid #ffb6c1;
-            box-shadow: 0 8px 20px rgba(190, 90, 120, 0.18);
+            box-shadow: 0 8px 20px rgba(190,90,120,0.18);
+            scroll-margin-top: 90px;
         }
 
         section h2 {
@@ -236,7 +210,7 @@
             color: #db4c7c;
         }
 
-        /* FRASE */
+        /* FRASES */
 
         .frase {
             text-align: center;
@@ -264,7 +238,7 @@
             font-size: 24px;
         }
 
-        /* BARRA DE EXPECTATIVA */
+        /* BARRAS DE EXPECTATIVA */
 
         .barra {
             background: #ffd6e7;
@@ -282,14 +256,13 @@
             animation: carregar 2s ease;
         }
 
-        @keyframes carregar {
-            from {
-                width: 0;
-            }
+        .progresso.baixo {
+            width: 5%;
+        }
 
-            to {
-                width: 100%;
-            }
+        @keyframes carregar {
+            from { width: 0; }
+            to { width: 100%; }
         }
 
         /* LISTA */
@@ -318,32 +291,15 @@
             font-size: 17px;
         }
 
-        /* BOTÃO */
-
-        .botao {
-            display: block;
-            width: fit-content;
-            margin: 30px auto 0;
-            padding: 15px 30px;
-            background: #ff69b4;
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .botao:hover {
-            background: #d93670;
-            transform: scale(1.1);
-        }
-
         /* CELULAR */
 
         @media (max-width: 600px) {
-
             header h1 {
                 font-size: 34px;
+            }
+
+            header p {
+                font-size: 17px;
             }
 
             section {
@@ -354,9 +310,18 @@
                 font-size: 25px;
             }
 
-            section p,
-            ul {
+            section p, ul {
                 font-size: 16px;
+            }
+
+            .frase {
+                font-size: 20px;
+                padding: 18px;
+            }
+
+            nav a {
+                padding: 8px 12px;
+                font-size: 14px;
             }
         }
     </style>
@@ -379,37 +344,26 @@
     <!-- CABEÇALHO -->
 
     <header>
-
         <div class="lacinho">🎀</div>
-
         <h1>Minha Semana das Crianças</h1>
-
-        <p>
-            Memórias, confusões e expectativas para 2027 💗
-        </p>
-
+        <p>Memórias, confusões e expectativas para 2027 💗</p>
     </header>
-
 
     <!-- MENU -->
 
     <nav>
-
         <a href="#inicio">Início</a>
         <a href="#semana">Minha Semana</a>
         <a href="#memorias">Memórias</a>
         <a href="#2027">2027</a>
         <a href="#sonhos">Meus Sonhos</a>
-
     </nav>
-
 
     <main>
 
         <!-- INÍCIO -->
 
         <section id="inicio">
-
             <h2>💗 Bem-vindos ao meu diário 💗</h2>
 
             <p>
@@ -425,187 +379,153 @@
             </p>
 
             <div class="frase">
-
-                "Foi divertido, foi caótico e definitivamente não foi uma semana normal." 😂
-
+                "Foi divertido, foi caótico e definitivamente não foi
+                uma semana normal." 😂
             </div>
-
         </section>
-
 
         <!-- MINHA SEMANA -->
 
         <section id="semana">
-
             <h2>🎠 Como foi minha semana?</h2>
 
             <div class="cards">
 
                 <div class="card">
-
                     <div class="emoji">💗</div>
-
                     <h3>Domingos divertidos</h3>
-
                     <p>
-                        Meu namorado passou os domingos comigo e foi muito legal.
-                  
+                        Meu namorado passou os domingos comigo
+                        e foi muito legal!
                     </p>
-
                 </div>
 
-                 <div class="emoji">🥲</div>
-
+                <div class="card">
+                    <div class="emoji">🥲</div>
                     <h3>Momentos de doideira</h3>
-
                     <p>
-                        Eu tava falando com o Gabriel que meu ChatGPT era abusivo comigo.
+                        Eu estava falando com o Gabriel que meu
+                        ChatGPT era abusivo comigo. KKKKK.
                     </p>
-
                 </div>
 
-
                 <div class="card">
-
                     <div class="emoji">🔨</div>
-
                     <h3>O quase acidente</h3>
-
                     <p>
-                        Em algum momento eu quase perdi o dedo.
-                    
+                        Em uma das brincadeiras, quase machuquei
+                        feio o dedo por causa de um prego.
                     </p>
-
                 </div>
 
-
                 <div class="card">
-
                     <div class="emoji">🚿</div>
-
                     <h3>O chuveirão</h3>
-
                     <p>
-                        A gente conseguiu quebrar o registro do chuveirão.
+                        A gente conseguiu quebrar o registro
+                        do chuveirão. Acontece, né?
                     </p>
-
                 </div>
 
-
                 <div class="card">
-
                     <div class="emoji">🧹</div>
-
                     <h3>Trabalho doméstico</h3>
-
                     <p>
-                        Minha vó me fez trabalhar que nem uma condenada.
-                    
+                        Minha vó me fez trabalhar que nem
+                        uma condenada. Não tive um minuto de paz!
                     </p>
-
                 </div>
 
             </div>
-
         </section>
-
 
         <!-- MEMÓRIAS -->
 
         <section id="memorias">
-
             <h2>📖 Memórias que ficaram</h2>
 
-
             <div class="memoria">
-
                 <h3>💞 Os domingos</h3>
-
                 <p>
                     Uma das melhores partes foi passar os domingos
-                    acompanhada, eu e o Gabriel brincou bastante. Eu pintei e rabisquei com o Gabriel, arrumei o cabelo dele, pintei ele, fiz o menino quase morrer de cansaço de tanto correr pra lá e pra cá, a gente correu atrás de uma galinha e me ajudou a cozinhar.
+                    com o Gabriel. A gente brincou bastante! Eu pintei
+                    e rabisquei com ele, arrumei o cabelo dele, pintei
+                    ele e fiz o menino quase morrer de cansaço de tanto
+                    correr para lá e para cá. Também corremos atrás
+                    de uma galinha e ele me ajudou a cozinhar.
                 </p>
-
             </div>
 
-             <div class="memoria">
-
-                <h3>🤨 As doiduras</h3>
-
+            <div class="memoria">
+                <h3>🤨 As doiduras com o ChatGPT</h3>
                 <p>
-                    Teve um dia que eu e o Gabriel tava em chamada, não sei oq era o assunto antes mas lembro que eu tinha pedido ele pra fazer uma imagem no chatGPT e depois comecei a chorar falando q eu n podia fazer na minha conta porque eu e meu chatGPT temos uma relação abusiva que quando eu mando uma foto e peço para ele editar, ele faz mas logo fala que meu limite diário tinha acabado, e eu comecei a chorar porque eu e meu chat tinhamos uma relação abusiva e q ele era tóxico comigo.
+                    Teve um dia em que eu e o Gabriel estávamos em
+                    chamada. Não lembro qual era o assunto antes, mas
+                    pedi para ele fazer uma imagem no ChatGPT. Depois,
+                    comecei a chorar porque não podia fazer na minha
+                    conta: eu e meu ChatGPT temos uma relação abusiva!
+                    Eu mando uma foto para editar, ele faz o serviço
+                    e logo depois avisa que meu limite diário acabou.
+                    Comecei a chorar dizendo que ele era tóxico comigo.
+                    KKKKKKK, não é possível uma coisa dessas!
                 </p>
-
-
+            </div>
 
             <div class="memoria">
-
                 <h3>🔨 O prego</h3>
-
                 <p>
-                    Em algum momento eu quase perdi o dedo
-                        por causa de um prego. Eu e o Gabriel estavamos brincando de esconde-esconde e uma hora eu corri e passei a mão pelo tronco de um coqueiro, a aliança ficou garrada e por eu estar correndo, fui puxada com força de volta, tá dplorido ate hj 🥲.
+                    Eu e o Gabriel estávamos brincando de esconde-esconde.
+                    Em uma hora, corri e passei a mão pelo tronco de um
+                    coqueiro. Minha aliança ficou agarrada e, como eu
+                    estava correndo, fui puxada com força para trás.
+                    Meu dedo ficou dolorido até depois. 🥲
                 </p>
-
             </div>
 
-
             <div class="memoria">
-
                 <h3>🚿 O registro do chuveirão</h3>
-
                 <p>
-                    Também conseguimos quebrar o registro do cuveirão q fica na área externa da casa, ai ficou vazando água por um tempão, mas depois meu outro avô por parte de mãe foi la e arrumou, ele é muito inteligente (gambiarreiro).
+                    Também conseguimos quebrar o registro do chuveirão
+                    que fica na área externa da casa. A água ficou
+                    vazando por um tempão, mas depois meu outro avô,
+                    por parte de mãe, foi lá e arrumou. Ele é muito
+                    inteligente e especialista em gambiarra!
                 </p>
-
             </div>
-
 
             <div class="memoria">
-
                 <h3>🧹 A jornada de trabalho</h3>
-
                 <p>
-                    Minha vó não me deu paz e eu trabalhei
-                        em casa que nem uma escrava, sendo q tinha mais gente em casa que podia muito bem ajudar, que raiva que passei
+                    Minha vó não me deu paz e eu trabalhei em casa
+                    que nem uma condenada. O pior é que tinha mais
+                    gente em casa que podia muito bem ajudar.
+                    Que raiva que eu passei!
                 </p>
-
             </div>
-
         </section>
-
 
         <!-- APRENDIZADOS -->
 
         <section>
-
             <h2>🌸 O que essa semana me ensinou?</h2>
 
             <ul>
-
                 <li>Nem toda semana tranquila realmente será tranquila.</li>
-
-                <li>Tenho medo de pregos.</li>
-
+                <li>Preciso tomar mais cuidado com pregos e objetos perigosos.</li>
                 <li>Registros de chuveirão não são indestrutíveis.</li>
-
                 <li>Minha vó sempre pode inventar alguma coisa para eu fazer.</li>
-
                 <li>Momentos simples podem virar memórias muito boas.</li>
-
-                <li>Às vezes o melhor plano é simplesmente aproveitar.</li>
-
-                <li>ChatGPT é igual mulher na tpm, você pode dar o carinho q for q ele ainda vai ficar tóxico.</li>
-
+                <li>Às vezes, o melhor plano é simplesmente aproveitar.</li>
+                <li>
+                    ChatGPT é igual mulher na TPM: você pode dar todo
+                    o carinho do mundo e ele ainda acaba com seu limite diário.
+                </li>
             </ul>
-
         </section>
 
-
-        <!-- 2027 -->
+        <!-- EXPECTATIVAS PARA 2027 -->
 
         <section id="2027">
-
             <h2>🌊 Minhas expectativas para 2027</h2>
 
             <p>
@@ -615,124 +535,80 @@
             </p>
 
             <div class="frase">
-
-                "Em 2027, por favor, me tirem de casa." 😂
-
+                "Em 2027, por favor, me tirem de casa!" 😂
             </div>
 
-
             <div class="sonho">
-
                 <h3>🏖️ Quero ir para a praia!</h3>
-
                 <p>
-                    Minha principal expectativa é não passar a
-                    Semana das Crianças inteira em casa.
-                    Quero conhecer a praia, aproveitar o lugar,
-                    curtir o clima e viver uma semana diferente.
+                    Minha principal expectativa é não passar a Semana
+                    das Crianças inteira em casa. Quero ir para a praia,
+                    aproveitar o lugar, curtir o clima e viver uma
+                    semana completamente diferente.
                 </p>
-
             </div>
 
-
             <div class="sonho">
-
                 <h3>🍣 Comer muito sushi</h3>
-
                 <p>
                     Uma viagem perfeita obviamente precisa de comida.
-                    E minha meta gastronômica para 2027 é comer
-                    muito sushi até não aguentar mais.
+                    Minha meta gastronômica para 2027 é comer muito
+                    sushi e aproveitar cada pedacinho.
                 </p>
-
             </div>
 
-
             <div class="sonho">
-
-                <h3>😌 Olhar feio para os outros</h3>
-
+                <h3>😏 Olhar feio para os outros</h3>
                 <p>
                     Também existe o objetivo extremamente importante
-                    de sentar na praia, observar o movimento e
-                    simplesmente olhar feio para os outros sem motivo.
+                    de sentar na praia, observar o movimento e olhar
+                    feio para os outros sem motivo aparente.
                 </p>
-
             </div>
-
 
             <div class="sonho">
-
                 <h3>🌴 Sair da rotina</h3>
-
                 <p>
-                    Quero que 2027 seja uma semana para sair da
-                    rotina, conhecer lugares, brincar, rir, comer
-                    bastante e criar novas lembranças.
+                    Quero que 2027 seja uma semana para sair da rotina,
+                    conhecer lugares, brincar, rir, comer bastante
+                    e criar novas lembranças.
                 </p>
-
             </div>
-
         </section>
 
-
-        <!-- SONHOS -->
+        <!-- NÍVEL DE EXPECTATIVA -->
 
         <section id="sonhos">
-
             <h2>✨ Nível de expectativa para 2027</h2>
 
-            <p>
-                Praia:
-            </p>
-
+            <p>🏖️ Praia:</p>
             <div class="barra">
                 <div class="progresso"></div>
             </div>
 
-
-            <p>
-                Sushi:
-            </p>
-
+            <p>🍣 Sushi:</p>
             <div class="barra">
                 <div class="progresso"></div>
             </div>
 
-
-            <p>
-                Diversão:
-            </p>
-
+            <p>🎉 Diversão:</p>
             <div class="barra">
                 <div class="progresso"></div>
             </div>
 
-
-            <p>
-                Ficar em casa fazendo serviço:
-            </p>
-
+            <p>🧹 Ficar em casa fazendo serviço:</p>
             <div class="barra">
-                <div class="progresso"
-                     style="width: 5%;">
-                </div>
+                <div class="progresso baixo"></div>
             </div>
-
 
             <div class="frase">
-
                 2027: PRAIA + SUSHI + DIVERSÃO = SIM 💗
-
             </div>
-
         </section>
-
 
         <!-- FINAL -->
 
         <section>
-
             <h2>🎀 Até a próxima Semana das Crianças!</h2>
 
             <p>
@@ -748,30 +624,22 @@
             </p>
 
             <div class="frase">
-
                 "Que venha 2027, porque eu já estou planejando o sushi." 🍣💗
-
             </div>
 
             <button class="voltar" onclick="history.back()">
-    ⬅ Voltar
-</button>
-
+                ⬅ Voltar
+            </button>
         </section>
 
     </main>
 
-
     <!-- RODAPÉ -->
 
     <footer>
-
         <p>🎀 Minha Semana das Crianças 🎀</p>
-
         <p>2026 → 2027</p>
-
         <p>Feito com memórias, caos e muito carinho 💗</p>
-
     </footer>
 
 </body>
