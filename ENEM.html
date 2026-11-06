@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal da Importância do ENEM</title>
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --bg-card: rgba(30, 41, 59, 0.7);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-red: #f43f5e;
+      --accent-yellow: #fbbf24;
+      --accent-green: #34d399;
+      --accent-purple: #c084fc;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(192, 132, 252, 0.15) 0px, transparent 50%);
+    }
+
+    /* Navegação */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+    }
+
+    .btn-voltar {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-voltar:hover {
+      background: var(--accent-blue);
+      color: #0f172a;
+      transform: translateX(-4px);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
+
+    /* Container Principal */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #38bdf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Barra de Busca e Filtros */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.8rem 1.2rem;
+      border-radius: 30px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-main);
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent-blue);
+    }
+
+    .filter-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+    }
+
+    .tag.active, .tag:hover {
+      background: var(--accent-blue);
+      color: #0f172a;
+      border-color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    /* Grid de Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--card-color, var(--accent-blue));
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .card-body {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .card-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card-list li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .card-list li::before {
+      content: '•';
+      color: var(--card-color, var(--accent-blue));
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* Seção Interativa - Simulador */
+    .interactive-section {
+      margin-top: 4rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .interactive-section h2 {
+      margin-bottom: 1rem;
+      color: var(--accent-yellow);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .scenario-box {
+      background: rgba(15, 23, 42, 0.6);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      margin-top: 1rem;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .option-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option-btn:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: var(--accent-blue);
+    }
+
+    .feedback {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      display: none;
+      font-weight: 500;
+    }
+
+    .feedback.correct {
+      display: block;
+      background: rgba(52, 211, 153, 0.15);
+      border: 1px solid var(--accent-green);
+      color: var(--accent-green);
+    }
+
+    .feedback.incorrect {
+      display: block;
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid var(--accent-red);
+      color: var(--accent-red);
+    }
+
+    /* Animações Keyframes */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .controls { flex-direction: column; align-items: stretch; }
+      .search-box { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">
+      <span>🎓</span> Portal ENEM
+    </div>
+    <button class="btn-voltar" onclick="window.history.back()">
+      <span>⬅</span> Voltar
+    </button>
+  </nav>
+
+  <div class="container">
+    
+    <header class="hero">
+      <h1>A Importância do ENEM</h1>
+      <p>Entenda por que fazer o Exame Nacional do Ensino Médio é o passo mais importante para abrir portas no ensino superior e transformar seu futuro profissional.</p>
+    </header>
+
+    <div class="controls">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Buscar por tema (ex: sisu, prouni, exterior)..." onkeyup="filterCards()">
+      </div>
+      <div class="filter-tags">
+        <button class="tag active" onclick="filterCategory('todos')">Todos</button>
+        <button class="tag" onclick="filterCategory('publicas')">Faculdades Públicas</button>
+        <button class="tag" onclick="filterCategory('bolsas')">Bolsas & Crédito</button>
+        <button class="tag" onclick="filterCategory('internacional')">Internacional</button>
+        <button class="tag" onclick="filterCategory('diagnostico')">Autoavaliação</button>
+      </div>
+    </div>
+
+    <!-- Grid de Conteúdos -->
+    <div class="grid" id="cardGrid">
+
+      <!-- Card 1: SiSU -->
+      <div class="card" data-category="publicas" style="--card-color: var(--accent-blue);">
+        <div class="card-header">
+          <div class="card-icon">🏛️</div>
+          <div class="card-title">Acesso às Públicas (SiSU)</div>
+        </div>
+        <div class="card-body">
+          O Sistema de Seleção Unificada conecta você às melhores universidades públicas do Brasil.
+        </div>
+        <ul class="card-list">
+          <li>Concorra a vagas em instituições federais e estaduais de todo o país.</li>
+          <li>Utilize uma única nota para disputar até duas opções de curso.</li>
+          <li>Inscrição totalmente gratuita e realizada pela internet.</li>
+          <li>Reserva de vagas garantida pela Lei de Cotas.</li>
+        </ul>
+      </div>
+
+      <!-- Card 2: ProUni -->
+      <div class="card" data-category="bolsas" style="--card-color: var(--accent-green);">
+        <div class="card-header">
+          <div class="card-icon">🎁</div>
+          <div class="card-title">Bolsas de Estudo (ProUni)</div>
+        </div>
+        <div class="card-body">
+          O ProUni concede bolsas parciais e integrais em faculdades particulares.
+        </div>
+        <ul class="card-list">
+          <li>Bolsas integrais (100%) para estudantes de menor renda.</li>
+          <li>Bolsas parciais (50%) com critérios facilitados.</li>
+          <li>Válido para faculdades privadas renomadas em todo o país.</li>
+          <li>Exige nota mínima de 450 pontos e nota maior que zero na redação.</li>
+        </ul>
+      </div>
+
+      <!-- Card 3: FIES -->
+      <div class="card" data-category="bolsas" style="--card-color: var(--accent-yellow);">
+        <div class="card-header">
+          <div class="card-icon">💳</div>
+          <div class="card-title">Financiamento Estudantil (FIES)</div>
+        </div>
+        <div class="card-body">
+          Crédito para pagar a faculdade privada apenas depois de se formar.
+        </div>
+        <ul class="card-list">
+          <li>Juros zero ou reduzidos para alunos de baixa renda.</li>
+          <li>Pagamento do financiamento inicia após a conclusão do curso.</li>
+          <li>Permite cursar graduações com mensalidades mais altas, como Medicina.</li>
+          <li>Usa o desempenho do ENEM como critério de classificação.</li>
+        </ul>
+      </div>
+
+      <!-- Card 4: Estudo no Exterior -->
+      <div class="card" data-category="internacional" style="--card-color: var(--accent-purple);">
+        <div class="card-header">
+          <div class="card-icon">✈️</div>
+          <div class="card-title">Estudar no Exterior</div>
+        </div>
+        <div class="card-body">
+          A nota do ENEM é aceita por dezenas de universidades internacionais.
+        </div>
+        <ul class="card-list">
+          <li>Mais de 50 universidades parceiras em Portugal aceitam a nota direta.</li>
+          <li>Dispensa a realização de vestibulares locais ou exames estrangeiros.</li>
+          <li>Acesso facilitado a cursos de graduação na Europa.</li>
+          <li>Oportunidade de vivência internacional e dupla diplomação.</li>
+        </ul>
+      </div>
+
+      <!-- Card 5: Autoavaliação -->
+      <div class="card" data-category="diagnostico" style="--card-color: var(--accent-red);">
+        <div class="card-header">
+          <div class="card-icon">📈</div>
+          <div class="card-title">Diagnóstico Educacional</div>
+        </div>
+        <div class="card-body">
+          Mensure seu nível de conhecimento antes de ingressar no mercado de trabalho.
+        </div>
+        <ul class="card-list">
+          <li>Avalia competências e habilidades desenvolvidas no Ensino Médio.</li>
+          <li>Identifica pontos fortes e conteúdos que precisam de reforço.</li>
+          <li>Permite treinar a gestão de tempo e controle emocional sob pressão.</li>
+          <li>Usado como critério de seleção por algumas empresas em processos de trainee.</li>
+        </ul>
+      </div>
+
+      <!-- Card 6: Treineiros -->
+      <div class="card" data-category="diagnostico" style="--card-color: var(--accent-blue);">
+        <div class="card-header">
+          <div class="card-icon">🎯</div>
+          <div class="card-title">Experiência Antecipada</div>
+        </div>
+        <div class="card-body">
+          A importância de fazer o ENEM antes de concluir o Ensino Médio (Treineiro).
+        </div>
+        <ul class="card-list">
+          <li>Conheça a estrutura real da prova sem a pressão da aprovação final.</li>
+          <li>Testa sua resistência física e mental em dois domingos seguidos.</li>
+          <li>Melhora o desempenho na redação através da correção oficial do INEP.</li>
+          <li>Garante maior preparação para quando for fazer o exame pra valer.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Seção Interativa -->
+    <section class="interactive-section">
+      <h2>🧠 Teste de Conhecimento: Oportunidades do ENEM</h2>
+      <p style="color: var(--text-muted);">Veja se você sabe qual programa escolher dependendo dos seus objetivos:</p>
+
+      <div class="scenario-box">
+        <p><strong>Cenário:</strong> Um estudante tirou uma boa nota no ENEM, tem renda familiar de até 1,5 salário mínimo por pessoa e deseja fazer um curso superior sem pagar nada em uma faculdade PRIVADA. Qual programa ele deve escolher?</p>
+        
+        <div class="options">
+          <button class="option-btn" onclick="checkAnswer(false, this)">A) SiSU (Sistema de Seleção Unificada)</button>
+          <button class="option-btn" onclick="checkAnswer(true, this)">B) ProUni (Programa Universidade para Todos - Bolsa Integral)</button>
+          <button class="option-btn" onclick="checkAnswer(false, this)">C) FIES (Fundo de Financiamento Estudantil)</button>
+        </div>
+
+        <div id="feedback" class="feedback"></div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Função de Filtragem por Categoria
+    function filterCategory(category) {
+      const cards = document.querySelectorAll('.card');
+      const tags = document.querySelectorAll('.tag');
+
+      // Atualiza estado ativo das tags
+      tags.forEach(tag => tag.classList.remove('active'));
+      event.target.classList.add('active');
+
+      // Exibe/oculta cards
+      cards.forEach(card => {
+        if (category === 'todos' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Função de Busca em Tempo Real
+    function filterCards() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Lógica do Simulador Interativo
+    function checkAnswer(isCorrect, element) {
+      const feedback = document.getElementById('feedback');
+      const options = document.querySelectorAll('.option-btn');
+
+      // Desabilita botões após a resposta
+      options.forEach(btn => btn.style.pointerEvents = 'none');
+
+      if (isCorrect) {
+        element.style.borderColor = 'var(--accent-green)';
+        element.style.background = 'rgba(52, 211, 153, 0.2)';
+        feedback.className = 'feedback correct';
+        feedback.innerText = '✅ Correto! O ProUni oferece bolsas de 100% em faculdades privadas para estudantes com renda de até 1,5 salário mínimo per capita.';
+      } else {
+        element.style.borderColor = 'var(--accent-red)';
+        element.style.background = 'rgba(244, 63, 94, 0.2)';
+        feedback.className = 'feedback incorrect';
+        feedback.innerText = '❌ Incorreto. O SiSU é para vagas em faculdades PÚBLICAS, e o FIES é um financiamento (empréstimo). A opção correta para bolsa 100% gratuita em faculdade privada é o ProUni.';
+      }
+    }
+  </script>
+
+</body>
+</html>
